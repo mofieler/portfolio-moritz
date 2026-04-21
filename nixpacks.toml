@@ -1,2 +1,8 @@
+[phases.setup]
+nixpkgsArchive = "https://github.com/NixOS/nixpkgs/archive/nixos-24.11.tar.gz"
+
+[phases.setup.nix]
+nodejs = "22_13"
+
 [phases.install]
 cmds = ["rm -f package-lock.json && npm install"]

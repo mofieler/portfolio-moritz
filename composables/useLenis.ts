@@ -1,4 +1,4 @@
-import Lenis from '@studio-freight/lenis'
+import Lenis from 'lenis'
 
 // Singleton pattern to ensure only one Lenis instance exists globally
 let globalLenis: Lenis | null = null
