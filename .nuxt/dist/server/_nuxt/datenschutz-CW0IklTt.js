@@ -1,0 +1,72 @@
+import { _ as __nuxt_component_0 } from "./nuxt-link-BEwqaDiO.js";
+import { _ as _sfc_main$1 } from "./UiIcon-CWWqmf7-.js";
+import { defineComponent, mergeProps, withCtx, createVNode, createTextVNode, useSSRContext } from "vue";
+import { ssrRenderAttrs, ssrRenderComponent, ssrRenderStyle } from "vue/server-renderer";
+import { u as useHead } from "./v3-XW2WoKGq.js";
+import "../server.mjs";
+import "C:/Users/morit/MyCode/moritzfieler.com/frontend/node_modules/ofetch/dist/node.mjs";
+import "#internal/nuxt/paths";
+import "C:/Users/morit/MyCode/moritzfieler.com/frontend/node_modules/hookable/dist/index.mjs";
+import "C:/Users/morit/MyCode/moritzfieler.com/frontend/node_modules/unctx/dist/index.mjs";
+import "C:/Users/morit/MyCode/moritzfieler.com/frontend/node_modules/h3/dist/index.mjs";
+import "vue-router";
+import "C:/Users/morit/MyCode/moritzfieler.com/frontend/node_modules/defu/dist/defu.mjs";
+import "C:/Users/morit/MyCode/moritzfieler.com/frontend/node_modules/klona/dist/index.mjs";
+import "C:/Users/morit/MyCode/moritzfieler.com/frontend/node_modules/nuxt/node_modules/cookie-es/dist/index.mjs";
+import "C:/Users/morit/MyCode/moritzfieler.com/frontend/node_modules/destr/dist/index.mjs";
+import "C:/Users/morit/MyCode/moritzfieler.com/frontend/node_modules/ohash/dist/index.mjs";
+import "@vue/devtools-api";
+import "@heroicons/vue/24/solid";
+import "C:/Users/morit/MyCode/moritzfieler.com/frontend/node_modules/@unhead/vue/dist/index.mjs";
+const _sfc_main = /* @__PURE__ */ defineComponent({
+  __name: "datenschutz",
+  __ssrInlineRender: true,
+  setup(__props) {
+    useHead({
+      title: "Datenschutz – Moritz Fieler",
+      meta: [{ name: "robots", content: "noindex, nofollow" }]
+    });
+    return (_ctx, _push, _parent, _attrs) => {
+      const _component_NuxtLink = __nuxt_component_0;
+      const _component_UiIcon = _sfc_main$1;
+      _push(`<div${ssrRenderAttrs(mergeProps({ class: "min-h-screen px-6 pt-36 pb-24 md:pt-48 md:pb-32" }, _attrs))}><div class="max-w-2xl mx-auto">`);
+      _push(ssrRenderComponent(_component_NuxtLink, {
+        to: "/",
+        class: "inline-flex items-center gap-2 text-sm font-semibold mb-12 transition-colors",
+        style: { "color": "rgb(var(--brand-muted))" },
+        onmouseenter: "this.style.color='rgb(var(--brand-terra))'",
+        onmouseleave: "this.style.color='rgb(var(--brand-muted))'"
+      }, {
+        default: withCtx((_, _push2, _parent2, _scopeId) => {
+          if (_push2) {
+            _push2(ssrRenderComponent(_component_UiIcon, {
+              name: "ArrowLeft",
+              size: "sm"
+            }, null, _parent2, _scopeId));
+            _push2(` Zurück `);
+          } else {
+            return [
+              createVNode(_component_UiIcon, {
+                name: "ArrowLeft",
+                size: "sm"
+              }),
+              createTextVNode(" Zurück ")
+            ];
+          }
+        }),
+        _: 1
+      }, _parent));
+      _push(`<h1 class="font-display font-bold text-3xl md:text-4xl mb-4" style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}"> Datenschutzerklärung </h1><p class="text-sm mb-12" style="${ssrRenderStyle({ "color": "rgb(var(--brand-muted) / 0.6)" })}">Stand: April 2025</p><div class="space-y-10 text-sm leading-relaxed" style="${ssrRenderStyle({ "color": "rgb(var(--brand-muted))" })}"><section><h2 class="text-xs font-bold tracking-[0.15em] uppercase mb-3" style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}"> 1. Verantwortlicher </h2><p> Verantwortlicher im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:<br><br> Moritz Fieler<br> Sautterweg 30<br> 70565 Stuttgart<br> E-Mail: <a href="mailto:moritzfieler@icloud.com" class="hover:underline" style="${ssrRenderStyle({ "color": "rgb(var(--brand-terra))" })}">moritzfieler@icloud.com</a></p></section><section><h2 class="text-xs font-bold tracking-[0.15em] uppercase mb-3" style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}"> 2. Allgemeines zur Datenverarbeitung </h2><p> Diese Website erhebt und verarbeitet personenbezogene Daten nur soweit dies zur Bereitstellung einer funktionsfähigen Website sowie der angebotenen Inhalte erforderlich ist. Eine darüber hinausgehende Verarbeitung findet nur statt, soweit dies gesetzlich erlaubt ist oder eine Einwilligung vorliegt. </p></section><section><h2 class="text-xs font-bold tracking-[0.15em] uppercase mb-3" style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}"> 3. Hosting &amp; Server-Logfiles </h2><p> Diese Website wird auf einem externen Server gehostet. Beim Abrufen der Seite werden vom Hosting-Anbieter automatisch sogenannte Server-Logfiles erfasst, die Ihr Browser übermittelt. Dazu gehören insbesondere:<br><br> Browsertyp und -version, verwendetes Betriebssystem, Referrer-URL, Hostname des zugreifenden Rechners, Uhrzeit der Serveranfrage sowie die IP-Adresse.<br><br> Eine Zusammenführung dieser Daten mit anderen Datenquellen findet nicht statt. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am sicheren und fehlerfreien Betrieb der Website). </p></section><section><h2 class="text-xs font-bold tracking-[0.15em] uppercase mb-3" style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}"> 4. Google Fonts </h2><p> Diese Website lädt Schriftarten (Inter, Plus Jakarta Sans) direkt von den Servern von Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA, über die Domain <span style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}">fonts.googleapis.com</span> und <span style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}">fonts.gstatic.com</span>.<br><br> Beim Laden der Schriftarten wird Ihre IP-Adresse an Google übermittelt. Dies erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse an einer einheitlichen und ansprechenden Darstellung der Website).<br><br> Wenn Ihr Browser Google Fonts nicht unterstützt oder der Abruf blockiert wird, erscheint die Seite in einer Systemschrift. Google kann die übermittelten Daten für eigene Zwecke (z. B. Profiling) verwenden. Weitere Informationen finden Sie in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="hover:underline" style="${ssrRenderStyle({ "color": "rgb(var(--brand-terra))" })}">policies.google.com/privacy</a>. </p></section><section><h2 class="text-xs font-bold tracking-[0.15em] uppercase mb-3" style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}"> 5. Eingebettete Inhalte (Google Drive) </h2><p> Einige Projektseiten dieser Website binden Videos über Google Drive (Google LLC) ein. Beim Öffnen eines solchen Projekts wird eine Verbindung zu den Google-Servern hergestellt und dabei Ihre IP-Adresse übermittelt. Dies geschieht nur, wenn Sie das betreffende Projekt aktiv öffnen.<br><br> Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO. Weitere Informationen: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" class="hover:underline" style="${ssrRenderStyle({ "color": "rgb(var(--brand-terra))" })}">policies.google.com/privacy</a>. </p></section><section><h2 class="text-xs font-bold tracking-[0.15em] uppercase mb-3" style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}"> 6. Lokaler Speicher (localStorage) </h2><p> Diese Website speichert im lokalen Speicher Ihres Browsers (localStorage) ausschließlich Ihre Farbschema-Präferenz (Hell- oder Dunkelmodus). Es werden keine personenbezogenen Daten gespeichert, und diese Information wird nicht an Server übertragen. Sie können den lokalen Speicher jederzeit über die Einstellungen Ihres Browsers löschen. </p></section><section><h2 class="text-xs font-bold tracking-[0.15em] uppercase mb-3" style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}"> 7. Cookies </h2><p> Diese Website setzt keine Tracking- oder Marketing-Cookies. Es werden keine Analysetools, Werbenetzwerke oder sonstigen Cookie-basierten Dienste eingesetzt. </p></section><section><h2 class="text-xs font-bold tracking-[0.15em] uppercase mb-3" style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}"> 8. Kontaktaufnahme per E-Mail </h2><p> Wenn Sie mich per E-Mail kontaktieren, werden die von Ihnen angegebenen Daten (Name, E-Mail-Adresse, Nachrichteninhalt) zur Bearbeitung Ihrer Anfrage gespeichert. Diese Daten gebe ich nicht ohne Ihre Einwilligung weiter. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (Vertragsanbahnung) bzw. lit. f DSGVO (berechtigtes Interesse an der Beantwortung von Anfragen). </p></section><section><h2 class="text-xs font-bold tracking-[0.15em] uppercase mb-3" style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}"> 9. Ihre Rechte als betroffene Person </h2><p> Sie haben gegenüber mir folgende Rechte hinsichtlich Ihrer personenbezogenen Daten:<br><br><strong style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}">Auskunft</strong> (Art. 15 DSGVO) · <strong style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}">Berichtigung</strong> (Art. 16 DSGVO) · <strong style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}">Löschung</strong> (Art. 17 DSGVO) · <strong style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}">Einschränkung der Verarbeitung</strong> (Art. 18 DSGVO) · <strong style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}">Datenübertragbarkeit</strong> (Art. 20 DSGVO) · <strong style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}">Widerspruch</strong> (Art. 21 DSGVO)<br><br> Zur Ausübung Ihrer Rechte wenden Sie sich bitte per E-Mail an: <a href="mailto:moritzfieler@icloud.com" class="hover:underline" style="${ssrRenderStyle({ "color": "rgb(var(--brand-terra))" })}">moritzfieler@icloud.com</a></p></section><section><h2 class="text-xs font-bold tracking-[0.15em] uppercase mb-3" style="${ssrRenderStyle({ "color": "rgb(var(--brand-text))" })}"> 10. Beschwerderecht bei der Aufsichtsbehörde </h2><p> Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde über die Verarbeitung Ihrer personenbezogenen Daten durch mich zu beschweren. Zuständige Aufsichtsbehörde für Baden-Württemberg ist:<br><br> Der Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg<br> Königstraße 10a<br> 70173 Stuttgart<br><a href="https://www.baden-wuerttemberg.datenschutz.de" target="_blank" rel="noopener noreferrer" class="hover:underline" style="${ssrRenderStyle({ "color": "rgb(var(--brand-terra))" })}">www.baden-wuerttemberg.datenschutz.de</a></p></section></div><div class="mt-16 pt-8 border-t text-xs" style="${ssrRenderStyle({ "border-color": "rgb(var(--brand-muted) / 0.15)", "color": "rgb(var(--brand-muted) / 0.6)" })}"> Mindcoded by Mo. · Stuttgart, Deutschland </div></div></div>`);
+    };
+  }
+});
+const _sfc_setup = _sfc_main.setup;
+_sfc_main.setup = (props, ctx) => {
+  const ssrContext = useSSRContext();
+  (ssrContext.modules || (ssrContext.modules = /* @__PURE__ */ new Set())).add("pages/datenschutz.vue");
+  return _sfc_setup ? _sfc_setup(props, ctx) : void 0;
+};
+export {
+  _sfc_main as default
+};
+//# sourceMappingURL=datenschutz-CW0IklTt.js.map
