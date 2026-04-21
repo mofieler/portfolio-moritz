@@ -123,6 +123,7 @@ declare global {
   const useAppConfig: typeof import('../../node_modules/nitropack/dist/runtime/internal/config').useAppConfig
   const useBase: typeof import('../../node_modules/h3').useBase
   const useEvent: typeof import('../../node_modules/nitropack/dist/runtime/internal/context').useEvent
+  const useImage: typeof import('../../node_modules/@nuxt/image/dist/runtime/server/utils/image').useImage
   const useNitroApp: typeof import('../../node_modules/nitropack/dist/runtime/internal/app').useNitroApp
   const useRuntimeConfig: typeof import('../../node_modules/nitropack/dist/runtime/internal/config').useRuntimeConfig
   const useSession: typeof import('../../node_modules/h3').useSession
@@ -149,4 +150,5 @@ export { defineTask, runTask } from 'nitropack/runtime/internal/task';
 export { defineNitroErrorHandler } from 'nitropack/runtime/internal/error/utils';
 export { buildAssetsURL as __buildAssetsURL, publicAssetsURL as __publicAssetsURL } from 'C:/Users/morit/MyCode/moritzfieler.com/frontend/node_modules/@nuxt/nitro-server/dist/runtime/utils/paths';
 export { defineAppConfig } from 'C:/Users/morit/MyCode/moritzfieler.com/frontend/node_modules/@nuxt/nitro-server/dist/runtime/utils/config';
+export { useImage } from 'C:/Users/morit/MyCode/moritzfieler.com/frontend/node_modules/@nuxt/image/dist/runtime/server/utils/image';
 export { defineI18nLocale, defineI18nConfig } from 'C:/Users/morit/MyCode/moritzfieler.com/frontend/node_modules/@nuxtjs/i18n/dist/runtime/composables/shared';

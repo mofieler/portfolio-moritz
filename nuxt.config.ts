@@ -16,7 +16,42 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/i18n',
     '@nuxtjs/tailwindcss',
+    '@nuxt/image',
   ],
+
+  image: {
+    // Use IPX for static site generation (processes images at build time)
+    provider: 'ipx',
+    // Directory where processed images are stored
+    dir: 'assets/images',
+    // Default quality for WebP conversion
+    quality: 80,
+    // Enable lazy loading by default
+    loading: 'lazy',
+    // Presets for common use cases
+    presets: {
+      project: {
+        widths: [320, 640, 960, 1280, 1920],
+        sizes: '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw',
+        format: ['webp', 'png'],
+        placeholder: true,
+      },
+      thumbnail: {
+        widths: [200, 400],
+        format: ['webp', 'png'],
+        placeholder: true,
+      },
+    },
+    // Screens for responsive sizing
+    screens: {
+      xs: 320,
+      sm: 640,
+      md: 768,
+      lg: 1024,
+      xl: 1280,
+      xxl: 1920,
+    },
+  },
 
   i18n: {
     strategy: 'prefix_except_default',
@@ -53,6 +88,7 @@ export default defineNuxtConfig({
       script: [
         {
           // Anti-FOUC: only restore explicitly saved preference — never auto-detect system theme
+          id: 'color-mode-script',
           innerHTML: `(function(){if(localStorage.getItem('color-mode')==='dark'){document.documentElement.classList.add('dark')}})()`,
           type: 'text/javascript',
         },
