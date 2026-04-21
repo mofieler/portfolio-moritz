@@ -38,6 +38,7 @@ export interface Project {
   imageAlt2?: string
   imageAlt2Key?: string
   videoSrc?: string
+  pdfUrl?: string
   reversed?: boolean
   gallery?: GalleryItem[]
   fallbackClass?: string

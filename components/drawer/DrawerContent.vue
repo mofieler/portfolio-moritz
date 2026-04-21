@@ -57,6 +57,18 @@ watch(() => props.project.id, () => {
           :class="{ 'rotate-180': isDescExpanded }"
         />
       </button>
+
+      <!-- PDF Download -->
+      <a
+        v-if="project.pdfUrl"
+        :href="project.pdfUrl"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="pdf-link"
+      >
+        <UiIcon name="DocumentArrowDown" size="sm" />
+        {{ $t('drawer.viewPdf') }}
+      </a>
     </div>
 
     <!-- Gallery -->
@@ -118,6 +130,12 @@ watch(() => props.project.id, () => {
   color: rgb(var(--brand-terra));
 }
 .desc-toggle:hover { color: rgb(var(--brand-terra-dark)); }
+
+.pdf-link {
+  @apply mt-4 inline-flex items-center gap-2 text-sm font-semibold transition-colors;
+  color: rgb(var(--brand-terra));
+}
+.pdf-link:hover { color: rgb(var(--brand-terra-dark)); }
 
 .section-head {
   @apply flex items-center gap-4 mb-5;

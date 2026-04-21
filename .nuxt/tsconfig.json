@@ -23,7 +23,7 @@
         "../node_modules/nuxt"
       ],
       "vite/client": [
-        "../node_modules/vite/client"
+        "../node_modules/nuxt/node_modules/vite/client"
       ],
       "nitropack/types": [
         "../node_modules/nitropack/types"
@@ -146,7 +146,7 @@
         "./nuxt-i18n-logger"
       ],
       "#app-manifest": [
-        "./manifest/meta/dev"
+        "./manifest/meta/af69d6a6-ba7b-41be-8858-4e8de6af245d"
       ],
       "#components": [
         "./components"
@@ -200,6 +200,6 @@
     "../.data",
     "../node_modules/runtime/server",
     "../node_modules/dist/runtime/server",
-    "dev"
+    "../.output"
   ]
 }

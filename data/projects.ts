@@ -91,6 +91,7 @@ export const projects: Project[] = [
     imageSrc: '',
     imageAltKey: 'projects.beast.imageAlt',
     videoSrc: 'https://drive.google.com/file/d/1tI3G2rP3guSLxWXkb_nM_HUENAI1Btly/preview',
+    pdfUrl: '/pdfs/beast-final-presentation.pdf',
     reversed: true,
     fallbackClass: 'fallback-beast',
     features: [

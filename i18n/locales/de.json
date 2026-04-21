@@ -35,7 +35,8 @@
     "openFullscreen": "Vollbild öffnen",
     "showImage": "Bild {n} anzeigen",
     "galleryEmpty": "Weitere visuelle Details folgen in Kürze.",
-    "featuresEmpty": "Details folgen in Kürze."
+    "featuresEmpty": "Details folgen in Kürze.",
+    "viewPdf": "Projekt-Dokumentation (PDF)"
   },
   "projects": {
     "paquita-pilates": {
