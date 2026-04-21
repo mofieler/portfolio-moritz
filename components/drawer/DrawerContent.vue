@@ -31,8 +31,8 @@ const parsedSections = computed(() => {
     const trimmed = line.trim()
     if (!trimmed) continue
     
-    // Check for bullet points (start with - or •)
-    if (trimmed.startsWith('- ') || trimmed.startsWith('• ')) {
+    // Check for bullet points (start with - or • or — or –)
+    if (trimmed.startsWith('- ') || trimmed.startsWith('• ') || trimmed.startsWith('— ') || trimmed.startsWith('– ')) {
       sections.push({
         title: '',
         content: trimmed.substring(2),

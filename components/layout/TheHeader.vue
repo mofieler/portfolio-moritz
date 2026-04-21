@@ -3,9 +3,14 @@ const { handleSmoothScroll } = useSmoothScroll()
 const { locale } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
 const { isDark, toggle } = useColorMode()
+const { triggerTransition } = useThemeTransition()
 
 const isEnglish = computed(() => locale.value === 'en')
 const isGerman = computed(() => locale.value === 'de')
+
+const handleThemeToggle = (event: MouseEvent) => {
+  triggerTransition(event, toggle)
+}
 
 // Strip hash fragment — switchLocalePath preserves the current URL hash (#top, #work…)
 // which causes a server/client hydration mismatch and crashes the page on navigation.
@@ -35,7 +40,7 @@ const localePath = (code: 'en' | 'de') => {
           hover:text-brand-text hover:bg-brand-surface border border-transparent
           hover:border-brand-muted/20 transition-all duration-300"
         :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
-        @click="toggle"
+        @click="handleThemeToggle"
       >
         <UiIcon :name="isDark ? 'Sun' : 'Moon'" size="md" />
       </button>
