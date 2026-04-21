@@ -44,8 +44,9 @@ export const useScrollReveal = (selector: string = '.reveal', options?: { thresh
     if (!process.client) return
     
     // Mobile: skip observer, reveal all immediately
+    // setTimeout instead of nextTick to ensure all section children (previously in ClientOnly) are in the DOM
     if (isMobile()) {
-      nextTick(scan)
+      setTimeout(scan, 150)
       return
     }
     

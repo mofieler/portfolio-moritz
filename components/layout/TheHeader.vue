@@ -31,7 +31,7 @@ const localePath = (code: 'en' | 'de') => {
 
       <!-- Dark Mode Toggle -->
       <button
-        class="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full text-brand-muted
+        class="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full text-brand-muted touch-manipulation
           hover:text-brand-text hover:bg-brand-surface border border-transparent
           hover:border-brand-muted/20 transition-all duration-300"
         :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"

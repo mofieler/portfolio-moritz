@@ -95,21 +95,8 @@ useHead({
 
 <template>
   <div>
-    <!-- ClientOnly prevents iOS Safari hydration mismatch issues -->
-    <!-- Header remains SSR for SEO, main content hydrates client-side -->
-    <ClientOnly>
-      <HeroSection />
-      <WorkSection />
-      <SkillsSection />
-      <template #fallback>
-        <!-- Static fallback for SSR - simple layout without animations -->
-        <div class="min-h-screen flex items-center justify-center">
-          <div class="text-center">
-            <h1 class="heading-display mb-4">Moritz Fieler</h1>
-            <p class="body-large">UX Designer & Frontend Developer</p>
-          </div>
-        </div>
-      </template>
-    </ClientOnly>
+    <HeroSection />
+    <WorkSection />
+    <SkillsSection />
   </div>
 </template>
