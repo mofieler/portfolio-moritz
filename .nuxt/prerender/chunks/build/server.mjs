@@ -673,12 +673,12 @@ const _routes = [
   {
     name: "index___en",
     path: "/en",
-    component: () => import('./index-DNNjevMt.mjs')
+    component: () => import('./index-OyBhXQ1M.mjs')
   },
   {
     name: "index___de",
     path: "/",
-    component: () => import('./index-DNNjevMt.mjs')
+    component: () => import('./index-OyBhXQ1M.mjs')
   },
   {
     name: "impressum___en",
@@ -6971,7 +6971,7 @@ const plugins = [
   ssg_detect_IpHCGcQQ_IR5Rl99qyukWoMA9fJGfuTYyoksTzy81cs
 ];
 const layouts = {
-  default: defineAsyncComponent(() => import('./default-DyIrFCPd.mjs').then((m) => m.default || m))
+  default: defineAsyncComponent(() => import('./default-CvQ8AsHI.mjs').then((m) => m.default || m))
 };
 const routeRulesMatcher = _routeRulesMatcher;
 const LayoutLoader = defineComponent({
