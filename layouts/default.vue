@@ -3,7 +3,7 @@ useScrollReveal('.reveal', { threshold: 0.15 })
 </script>
 
 <template>
-  <div class="overflow-x-hidden">
+  <div class="min-h-screen touch-pan-y">
     <TheHeader />
     
     <main>

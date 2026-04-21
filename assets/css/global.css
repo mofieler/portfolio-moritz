@@ -320,3 +320,38 @@ body {
 .animate-ping-slow {
   animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
+
+/* ============================================
+   iOS Safari Fixes — Mobile rendering & touch
+   ============================================ */
+
+/* Fix iOS momentum scrolling and touch handling */
+@supports (-webkit-touch-callout: none) {
+  /* iOS specific styles */
+  html {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Ensure proper touch handling on interactive elements */
+  a, button, [role="button"], .nav-item {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Fix for content not rendering */
+  main, section, article {
+    transform: translateZ(0);
+  }
+
+  /* Ensure floating nav works properly on iOS */
+  .glass-nav {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+
+  /* Fix text rendering */
+  body {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+}

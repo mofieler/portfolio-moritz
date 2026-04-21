@@ -70,8 +70,8 @@ onMounted(() => {
 </script>
 
 <template>
-  <nav class="fixed bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-50 pointer-events-auto w-max">
-    <div class="glass-nav rounded-full px-2 py-2 md:px-3 md:py-3 flex items-center gap-1 md:gap-3">
+  <nav class="fixed bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-50 pointer-events-auto w-max touch-manipulation">
+    <div class="glass-nav rounded-full px-2 py-2 md:px-3 md:py-3 flex items-center gap-1 md:gap-3 will-change-transform">
       <a
         v-for="item in NAV_ITEMS"
         :key="item.id"

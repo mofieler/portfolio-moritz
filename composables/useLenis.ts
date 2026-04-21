@@ -3,9 +3,23 @@ import Lenis from 'lenis'
 // Singleton pattern to ensure only one Lenis instance exists globally
 let globalLenis: Lenis | null = null
 let rafId: number | null = null
+let lenisReady = false
+
+// Track iOS Safari state
+const isIOSSafari = () => {
+  if (!process.client) return false
+  const ua = navigator.userAgent.toLowerCase()
+  return /iphone|ipad|ipod/.test(ua) && /safari/.test(ua) && !/chrome/.test(ua)
+}
 
 const initGlobalLenis = () => {
   if (!process.client || globalLenis) return
+
+  // Skip Lenis on iOS Safari - use native scrolling instead
+  if (isIOSSafari()) {
+    lenisReady = true
+    return
+  }
 
   globalLenis = new Lenis({
     duration: 1.2,
@@ -14,7 +28,7 @@ const initGlobalLenis = () => {
     gestureOrientation: 'vertical',
     smoothWheel: true,
     wheelMultiplier: 1,
-    touchMultiplier: 2,
+    touchMultiplier: 1,
     infinite: false,
   })
 
@@ -58,7 +72,6 @@ export const useLenis = () => {
 
   onMounted(() => {
     initGlobalLenis()
-    isReady.value = true
   })
 
   // Only destroy on actual app unmount, not component unmount
@@ -69,7 +82,7 @@ export const useLenis = () => {
 
   return {
     lenis: computed(() => globalLenis),
-    isReady: readonly(isReady),
+    isReady: computed(() => lenisReady),
     scrollTo,
     onScroll,
     stop,
