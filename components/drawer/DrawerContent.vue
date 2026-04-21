@@ -13,13 +13,78 @@ const isDescExpanded = ref(false)
 const hasLongDesc = computed(() => longDescription.value.length > 0)
 const isExpandable = computed(() => hasLongDesc.value || description.value.length > 180)
 
-const formattedLongDescription = computed(() => {
-  if (!longDescription.value) return ''
-  return longDescription.value
-    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\n\n/g, '</p><p class="mt-4">')
-    .replace(/\n/g, '<br>')
+interface CaseStudySection {
+  title: string
+  content: string
+  type: 'intro' | 'heading' | 'bullet' | 'text'
+}
+
+const parsedSections = computed(() => {
+  if (!longDescription.value) return []
+  
+  const sections: CaseStudySection[] = []
+  // Replace literal \n with actual newlines first
+  const text = longDescription.value.replace(/\\n/g, '\n')
+  const lines = text.split('\n')
+  
+  for (const line of lines) {
+    const trimmed = line.trim()
+    if (!trimmed) continue
+    
+    // Check for bullet points (start with - or •)
+    if (trimmed.startsWith('- ') || trimmed.startsWith('• ')) {
+      sections.push({
+        title: '',
+        content: trimmed.substring(2),
+        type: 'bullet'
+      })
+    }
+    // Check for bold headings (**text**)
+    else if (trimmed.startsWith('**') && trimmed.endsWith('**')) {
+      sections.push({
+        title: trimmed.replace(/\*\*/g, ''),
+        content: '',
+        type: 'heading'
+      })
+    }
+    // Numbered sections (1. Title, 2. Title etc)
+    else if (/^\d+\.\s/.test(trimmed)) {
+      const match = trimmed.match(/^(\d+)\.\s+(.+)$/)
+      if (match) {
+        sections.push({
+          title: match[2],
+          content: '',
+          type: 'heading'
+        })
+      }
+    }
+    // Regular text
+    else {
+      // Check if previous section was a bullet list to group them
+      const lastSection = sections[sections.length - 1]
+      if (lastSection?.type === 'bullet') {
+        // This might be bullet content continuation - treat as new bullet
+        sections.push({
+          title: '',
+          content: trimmed,
+          type: 'bullet'
+        })
+      } else {
+        sections.push({
+          title: '',
+          content: trimmed,
+          type: 'text'
+        })
+      }
+    }
+  }
+  
+  return sections
 })
+
+const formattedContent = (content: string) => {
+  return content.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+}
 
 watch(() => props.project.id, () => {
   isDescExpanded.value = false
@@ -31,12 +96,12 @@ watch(() => props.project.id, () => {
     class="drawer-content"
     :class="isSwitching ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'"
   >
-    <!-- Title -->
-    <div class="mb-8 md:mb-10 max-w-4xl">
+    <!-- Header Section -->
+    <header class="project-header">
       <span class="project-category">{{ category }}</span>
       <h3 class="project-title">{{ title }}</h3>
 
-      <!-- Description: always visible; clamp only when collapsible and collapsed -->
+      <!-- Short Description: always visible -->
       <p
         class="project-description"
         :class="{ 'desc-clamp': isExpandable && !isDescExpanded }"
@@ -44,39 +109,67 @@ watch(() => props.project.id, () => {
         {{ description }}
       </p>
 
-      <!-- Long description: shown only when expanded -->
+      <!-- Case Study Content (Expanded) -->
       <div
         v-if="hasLongDesc && isDescExpanded"
-        class="project-description mt-4 long-description"
-        v-html="formattedLongDescription"
-      />
-
-      <button
-        v-if="isExpandable"
-        class="desc-toggle"
-        @click="isDescExpanded = !isDescExpanded"
+        class="case-study-content"
       >
-        {{ isDescExpanded ? $t('drawer.readLess') : $t('drawer.readMore') }}
-        <UiIcon
-          name="ChevronDown"
-          size="sm"
-          class="transition-transform"
-          :class="{ 'rotate-180': isDescExpanded }"
-        />
-      </button>
+        <template v-for="(section, index) in parsedSections" :key="index">
+          <!-- Section Heading -->
+          <h4
+            v-if="section.type === 'heading'"
+            class="case-study-heading"
+          >
+            {{ section.title }}
+          </h4>
+          
+          <!-- Bullet Point -->
+          <div
+            v-else-if="section.type === 'bullet'"
+            class="case-study-bullet"
+          >
+            <span class="bullet-marker">—</span>
+            <span v-html="formattedContent(section.content)" />
+          </div>
+          
+          <!-- Regular Text -->
+          <p
+            v-else
+            class="case-study-paragraph"
+            v-html="formattedContent(section.content)"
+          />
+        </template>
+      </div>
 
-      <!-- PDF Download -->
-      <a
-        v-if="project.pdfUrl"
-        :href="project.pdfUrl"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="pdf-link"
-      >
-        <UiIcon name="DocumentArrowDown" size="sm" />
-        {{ $t('drawer.viewPdf') }}
-      </a>
-    </div>
+      <!-- Action Row -->
+      <div class="action-row">
+        <button
+          v-if="isExpandable"
+          class="desc-toggle"
+          @click="isDescExpanded = !isDescExpanded"
+        >
+          {{ isDescExpanded ? $t('drawer.readLess') : $t('drawer.readMore') }}
+          <UiIcon
+            name="ChevronDown"
+            size="sm"
+            class="transition-transform"
+            :class="{ 'rotate-180': isDescExpanded }"
+          />
+        </button>
+
+        <!-- PDF Download -->
+        <a
+          v-if="project.pdfUrl"
+          :href="project.pdfUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="pdf-link"
+        >
+          <UiIcon name="DocumentArrowDown" size="sm" />
+          {{ $t('drawer.viewPdf') }}
+        </a>
+      </div>
+    </header>
 
     <!-- Gallery -->
     <section class="mb-12 md:mb-16">
@@ -120,8 +213,12 @@ watch(() => props.project.id, () => {
   color: rgb(var(--brand-text));
 }
 
+.project-header {
+  @apply mb-10 md:mb-12 max-w-4xl;
+}
+
 .project-description {
-  @apply text-base md:text-lg font-light leading-relaxed;
+  @apply text-base md:text-lg font-light leading-relaxed mb-6;
   color: rgb(var(--brand-muted));
 }
 
@@ -132,21 +229,58 @@ watch(() => props.project.id, () => {
   overflow: hidden;
 }
 
+.action-row {
+  @apply flex flex-wrap items-center gap-4 mt-6;
+}
+
 .desc-toggle {
-  @apply mt-3 inline-flex items-center gap-1.5 text-sm font-semibold transition-colors;
+  @apply inline-flex items-center gap-1.5 text-sm font-semibold transition-colors;
   color: rgb(var(--brand-terra));
 }
 .desc-toggle:hover { color: rgb(var(--brand-terra-dark)); }
 
 .pdf-link {
-  @apply mt-6 inline-flex items-center gap-2 text-sm font-semibold transition-colors;
+  @apply inline-flex items-center gap-2 text-sm font-semibold transition-colors;
   color: rgb(var(--brand-terra));
 }
 .pdf-link:hover { color: rgb(var(--brand-terra-dark)); }
 
-.long-description :deep(strong) {
+/* Case Study Content Styles */
+.case-study-content {
+  @apply mt-6;
+}
+
+.case-study-heading {
+  @apply text-lg md:text-xl font-display font-semibold mb-3;
+  color: rgb(var(--brand-text));
+  line-height: 1.4;
+}
+
+.case-study-paragraph {
+  @apply text-base font-light leading-relaxed mb-4;
+  color: rgb(var(--brand-muted));
+}
+
+.case-study-bullet {
+  @apply flex items-start gap-3 text-base font-light leading-relaxed mb-2 pl-2;
+  color: rgb(var(--brand-muted));
+}
+
+.bullet-marker {
+  @apply text-lg mt-[-2px];
+  color: rgb(var(--brand-terra));
+  font-weight: 600;
+}
+
+.case-study-bullet :deep(strong),
+.case-study-paragraph :deep(strong) {
   font-weight: 600;
   color: rgb(var(--brand-text));
+}
+
+/* Add space between sections */
+.case-study-content > * + .case-study-heading {
+  @apply mt-8;
 }
 
 .section-head {
