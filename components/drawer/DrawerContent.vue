@@ -13,6 +13,14 @@ const isDescExpanded = ref(false)
 const hasLongDesc = computed(() => longDescription.value.length > 0)
 const isExpandable = computed(() => hasLongDesc.value || description.value.length > 180)
 
+const formattedLongDescription = computed(() => {
+  if (!longDescription.value) return ''
+  return longDescription.value
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\n\n/g, '</p><p class="mt-4">')
+    .replace(/\n/g, '<br>')
+})
+
 watch(() => props.project.id, () => {
   isDescExpanded.value = false
 })
@@ -37,12 +45,11 @@ watch(() => props.project.id, () => {
       </p>
 
       <!-- Long description: shown only when expanded -->
-      <p
+      <div
         v-if="hasLongDesc && isDescExpanded"
-        class="project-description mt-4"
-      >
-        {{ longDescription }}
-      </p>
+        class="project-description mt-4 long-description"
+        v-html="formattedLongDescription"
+      />
 
       <button
         v-if="isExpandable"
@@ -132,10 +139,15 @@ watch(() => props.project.id, () => {
 .desc-toggle:hover { color: rgb(var(--brand-terra-dark)); }
 
 .pdf-link {
-  @apply mt-4 inline-flex items-center gap-2 text-sm font-semibold transition-colors;
+  @apply mt-6 inline-flex items-center gap-2 text-sm font-semibold transition-colors;
   color: rgb(var(--brand-terra));
 }
 .pdf-link:hover { color: rgb(var(--brand-terra-dark)); }
+
+.long-description :deep(strong) {
+  font-weight: 600;
+  color: rgb(var(--brand-text));
+}
 
 .section-head {
   @apply flex items-center gap-4 mb-5;
