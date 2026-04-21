@@ -3,14 +3,37 @@ export const useScrollReveal = (selector: string = '.reveal', options?: { thresh
   let observer: IntersectionObserver | null = null
   const route = useRoute()
 
+  // Detect mobile devices (including iOS)
+  const isMobile = () => {
+    if (!process.client) return false
+    return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+  }
+
+  const revealElement = (el: Element) => {
+    if (revealed.value.has(el)) return
+    el.classList.add('active')
+    revealed.value.add(el)
+  }
+
   const scan = () => {
-    if (!process.client || !observer) return
-    document.querySelectorAll(selector).forEach((el) => {
+    if (!process.client) return
+    const elements = document.querySelectorAll(selector)
+    
+    // On mobile, reveal elements immediately without animation
+    // to avoid iOS viewport/observer issues
+    if (isMobile()) {
+      elements.forEach(revealElement)
+      return
+    }
+    
+    // Desktop: use IntersectionObserver for animations
+    if (!observer) return
+    elements.forEach((el) => {
       if (revealed.value.has(el)) return
       const rect = el.getBoundingClientRect()
-      if (rect.top < window.innerHeight) {
-        el.classList.add('active')
-        revealed.value.add(el)
+      // More generous check: element is in or near viewport
+      if (rect.top < window.innerHeight + 100) {
+        revealElement(el)
       } else {
         observer?.observe(el)
       }
@@ -19,20 +42,27 @@ export const useScrollReveal = (selector: string = '.reveal', options?: { thresh
 
   onMounted(() => {
     if (!process.client) return
+    
+    // Mobile: skip observer, reveal all immediately
+    if (isMobile()) {
+      nextTick(scan)
+      return
+    }
+    
+    // Desktop: use IntersectionObserver for scroll animations
     observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting && !revealed.value.has(entry.target)) {
-            entry.target.classList.add('active')
-            revealed.value.add(entry.target)
+            revealElement(entry.target)
             observer?.unobserve(entry.target)
           }
         })
       },
       {
         root: null,
-        rootMargin: options?.rootMargin ?? '0px',
-        threshold: options?.threshold ?? 0.15,
+        rootMargin: options?.rootMargin ?? '50px',
+        threshold: options?.threshold ?? 0.1,
       }
     )
     scan()
