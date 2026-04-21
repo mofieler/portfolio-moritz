@@ -2,6 +2,9 @@
 node_modules/
 frontend/node_modules/
 
+# Lockfile — generated on Windows, causes cross-platform native binding failures on Linux deploy
+package-lock.json
+
 # Nuxt build output
 frontend/.nuxt/
 frontend/.output/
