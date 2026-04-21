@@ -1,7 +1,6 @@
 
 // @ts-nocheck
-import locale_en_46json_638b20af from "#nuxt-i18n/638b20af";
-import locale_de_46json_5e6ecf68 from "#nuxt-i18n/5e6ecf68";
+
 
 export const localeCodes =  [
   "en",
@@ -9,23 +8,13 @@ export const localeCodes =  [
 ]
 
 export const localeLoaders = {
-  en: [
-    {
-      key: "locale_en_46json_638b20af",
-      load: () => Promise.resolve(locale_en_46json_638b20af),
-      cache: true
-    }
-  ],
-  de: [
-    {
-      key: "locale_de_46json_5e6ecf68",
-      load: () => Promise.resolve(locale_de_46json_5e6ecf68),
-      cache: true
-    }
-  ]
+  en: [],
+  de: []
 }
 
-export const vueI18nConfigs = []
+export const vueI18nConfigs = [
+  () => import("#nuxt-i18n/2136b964" /* webpackChunkName: "config_i18n_46config_46ts_2136b964" */)
+]
 
 export const nuxtI18nOptions = {
   restructureDir: "i18n",
@@ -59,23 +48,13 @@ export const nuxtI18nOptions = {
       code: "en",
       name: "English",
       language: "en-US",
-      files: [
-        {
-          path: "C:/Users/morit/MyCode/moritzfieler.com/frontend/i18n/i18n/locales/en.json",
-          cache: undefined
-        }
-      ]
+      files: []
     },
     {
       code: "de",
       name: "Deutsch",
       language: "de-DE",
-      files: [
-        {
-          path: "C:/Users/morit/MyCode/moritzfieler.com/frontend/i18n/i18n/locales/de.json",
-          cache: undefined
-        }
-      ]
+      files: []
     }
   ],
   defaultLocale: "de",
@@ -85,7 +64,7 @@ export const nuxtI18nOptions = {
   defaultLocaleRouteNameSuffix: "default",
   strategy: "prefix_except_default",
   lazy: false,
-  langDir: "i18n/locales",
+  langDir: "locales",
   rootRedirect: undefined,
   detectBrowserLanguage: false,
   differentDomains: false,
@@ -105,23 +84,13 @@ export const normalizedLocales = [
     code: "en",
     name: "English",
     language: "en-US",
-    files: [
-      {
-        path: "C:/Users/morit/MyCode/moritzfieler.com/frontend/i18n/i18n/locales/en.json",
-        cache: undefined
-      }
-    ]
+    files: []
   },
   {
     code: "de",
     name: "Deutsch",
     language: "de-DE",
-    files: [
-      {
-        path: "C:/Users/morit/MyCode/moritzfieler.com/frontend/i18n/i18n/locales/de.json",
-        cache: undefined
-      }
-    ]
+    files: []
   }
 ]
 
@@ -193,17 +162,16 @@ async function loadCfg(config) {
 }
 
 
-  import.meta.hot.accept("../i18n/i18n/locales/en.json", async mod => {
-    localeLoaders["en"][0].load = () => Promise.resolve(mod.default)
-    await useNuxtApp()._nuxtI18nDev.resetI18nProperties("en")
+
+
+  import.meta.hot.accept("../i18n/i18n.config.ts", async mod => {
+    const [oldData, newData] = await Promise.all([loadCfg(vueI18nConfigs[0]), loadCfg(() => Promise.resolve(mod))]);
+    vueI18nConfigs[0] = () => Promise.resolve(mod)
+    if(deepEqual(oldData, newData, ['messages', 'numberFormats', 'datetimeFormats'])) {
+      return await useNuxtApp()._nuxtI18nDev.resetI18nProperties()
+    }
+    import.meta.hot.send('i18n:options-complex-invalidation', {})
   })
-
-  import.meta.hot.accept("../i18n/i18n/locales/de.json", async mod => {
-    localeLoaders["de"][0].load = () => Promise.resolve(mod.default)
-    await useNuxtApp()._nuxtI18nDev.resetI18nProperties("de")
-  })
-
-
 
 }
 /** client-end **/

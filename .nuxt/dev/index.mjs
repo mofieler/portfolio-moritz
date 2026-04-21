@@ -920,23 +920,13 @@ const _inlineRuntimeConfig = {
           "code": "en",
           "name": "English",
           "language": "en-US",
-          "files": [
-            {
-              "path": "C:/Users/morit/MyCode/moritzfieler.com/frontend/i18n/i18n/locales/en.json",
-              "cache": ""
-            }
-          ]
+          "files": []
         },
         {
           "code": "de",
           "name": "Deutsch",
           "language": "de-DE",
-          "files": [
-            {
-              "path": "C:/Users/morit/MyCode/moritzfieler.com/frontend/i18n/i18n/locales/de.json",
-              "cache": ""
-            }
-          ]
+          "files": []
         }
       ],
       "detectBrowserLanguage": false,

@@ -22,13 +22,13 @@ export default defineNuxtConfig({
     strategy: 'prefix_except_default',
     defaultLocale: 'de',
     lazy: false,
-    langDir: 'i18n/locales',
+    vueI18n: './i18n.config.ts',
     bundle: {
       optimizeTranslationDirective: false,
     },
     locales: [
-      { code: 'en', name: 'English', language: 'en-US', file: 'en.json' },
-      { code: 'de', name: 'Deutsch', language: 'de-DE', file: 'de.json' },
+      { code: 'en', name: 'English', language: 'en-US' },
+      { code: 'de', name: 'Deutsch', language: 'de-DE' },
     ],
     detectBrowserLanguage: false,
   },

@@ -57,6 +57,30 @@ onBeforeUnmount(() => clearTimeout(timer))
     <HeroBackground />
 
     <div class="relative z-10 max-w-4xl mx-auto reveal">
+      <!-- Profile picture -->
+      <div class="flex justify-center mb-8">
+        <div class="relative inline-block">
+          <!-- Outer glow ring -->
+          <div class="absolute inset-0 rounded-full animate-pulse-slow"
+            style="background: radial-gradient(circle, rgb(var(--brand-terra) / 0.15) 0%, transparent 70%); transform: scale(1.35);">
+          </div>
+          <!-- Avatar -->
+          <img
+            src="/images/projects/portfolio/profilepicture.png"
+            alt="Moritz Fieler"
+            class="relative w-28 h-28 md:w-36 md:h-36 rounded-full object-cover"
+            style="box-shadow: 0 0 0 3px rgb(var(--brand-terra) / 0.25), 0 8px 32px rgba(0,0,0,0.12);"
+          />
+          <!-- Available pulse dot -->
+          <span class="absolute bottom-1.5 right-1.5 md:bottom-2 md:right-2 flex h-4 w-4">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-60"
+              style="background-color: rgb(var(--brand-terra));"></span>
+            <span class="relative inline-flex rounded-full h-4 w-4 border-2"
+              style="background-color: rgb(var(--brand-terra)); border-color: rgb(var(--brand-bg));"></span>
+          </span>
+        </div>
+      </div>
+
       <span class="eyebrow-text text-brand-terra mb-6 block">
         {{ $t('hero.eyebrow') }}
       </span>
@@ -91,8 +115,8 @@ onBeforeUnmount(() => clearTimeout(timer))
       </div>
     </div>
 
-    <!-- Powered By bar -->
-    <div class="absolute z-10 bottom-20 md:bottom-24 left-0 right-0 flex justify-center px-4">
+    <!-- Powered By bar — hidden on mobile to avoid overlap with floating nav -->
+    <div class="hidden md:flex absolute z-10 bottom-24 left-0 right-0 justify-center px-4">
       <div class="flex items-center gap-3 md:gap-4 bg-brand-text/[0.04] border border-brand-muted/15 rounded-full px-5 py-2.5 backdrop-blur-sm flex-wrap justify-center">
         <span class="font-bold tracking-[0.20em] uppercase text-brand-terra text-[10px] shrink-0">
           POWERED BY
@@ -123,5 +147,14 @@ onBeforeUnmount(() => clearTimeout(timer))
 @keyframes blink {
   0%, 100% { opacity: 1; }
   50%       { opacity: 0; }
+}
+
+@keyframes pulse-slow {
+  0%, 100% { opacity: 0.6; transform: scale(1.35); }
+  50%       { opacity: 1;   transform: scale(1.45); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
 }
 </style>

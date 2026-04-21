@@ -65,6 +65,12 @@ const footerLinks = [
           >
             {{ $t(link.label) }}
           </span>
+          <NuxtLink to="/impressum" class="hover:text-white transition-colors">
+            Impressum
+          </NuxtLink>
+          <NuxtLink to="/datenschutz" class="hover:text-white transition-colors">
+            Datenschutz
+          </NuxtLink>
         </div>
       </div>
     </div>

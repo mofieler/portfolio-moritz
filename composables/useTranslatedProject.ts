@@ -1,13 +1,8 @@
 import type { MaybeRefOrGetter } from 'vue'
 import type { Project, ProjectFeature, Skill } from '~/types'
 
-/**
- * Resolves title / category / description / tags from a Project, preferring
- * i18n keys (`*Key` fields) over inline strings. Keeps call-sites short and
- * ensures a single source of truth for the translation-fallback pattern.
- */
 export function useTranslatedProject(projectRef: MaybeRefOrGetter<Project | null | undefined>) {
-  const { t, tm } = useI18n()
+  const { t, tm, rt } = useI18n()
   const project = computed(() => toValue(projectRef))
 
   const pick = (key?: string, fallback?: string) => (key ? t(key) : fallback ?? '')
@@ -23,7 +18,7 @@ export function useTranslatedProject(projectRef: MaybeRefOrGetter<Project | null
       const key = project.value?.tagsKey
       if (key) {
         const list = tm(key)
-        if (Array.isArray(list)) return list as string[]
+        if (Array.isArray(list)) return list.map(item => rt(item))
       }
       return project.value?.tags ?? []
     }),
@@ -38,11 +33,8 @@ export function useTranslatedProject(projectRef: MaybeRefOrGetter<Project | null
   }
 }
 
-/**
- * Same pattern for skill cards.
- */
 export function useTranslatedSkill(skillRef: MaybeRefOrGetter<Skill>) {
-  const { t, tm } = useI18n()
+  const { t, tm, rt } = useI18n()
   const skill = computed(() => toValue(skillRef))
 
   return {
@@ -55,8 +47,8 @@ export function useTranslatedSkill(skillRef: MaybeRefOrGetter<Skill>) {
       if (key) {
         const labels = tm(key)
         if (Array.isArray(labels)) {
-          return (labels as string[]).map((label, i) => ({
-            label,
+          return labels.map((label, i) => ({
+            label: rt(label),
             variant: skill.value.tags?.[i]?.variant ?? 'neutral',
           }))
         }
