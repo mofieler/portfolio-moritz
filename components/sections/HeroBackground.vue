@@ -13,6 +13,12 @@ let rafId: number
 let t = 0
 let dpr = 1
 
+// Detect mobile - disable animation to save battery and prevent rendering issues
+const isMobile = () => {
+  if (!process.client) return false
+  return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+}
+
 const isDarkMode = () => document.documentElement.classList.contains('dark')
 
 function setSize(canvas: HTMLCanvasElement) {
@@ -78,6 +84,8 @@ function draw(canvas: HTMLCanvasElement) {
 }
 
 function animate() {
+  // Skip animation on mobile - static frame only
+  if (isMobile()) return
   rafId = requestAnimationFrame(animate)
   t += 0.007
   const canvas = canvasRef.value
@@ -88,12 +96,22 @@ function onResize() {
   const canvas = canvasRef.value
   if (!canvas) return
   setSize(canvas)
+  // Redraw on resize for mobile (since no animation loop)
+  if (isMobile()) draw(canvas)
 }
 
 onMounted(() => {
   const canvas = canvasRef.value!
   setSize(canvas)
-  animate()
+  
+  if (isMobile()) {
+    // Mobile: draw once, no animation
+    draw(canvas)
+  } else {
+    // Desktop: animate
+    animate()
+  }
+  
   window.addEventListener('resize', onResize, { passive: true })
 })
 

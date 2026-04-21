@@ -52,7 +52,7 @@ onBeforeUnmount(() => clearTimeout(timer))
 <template>
   <section
     id="top"
-    class="relative flex flex-col items-center justify-center text-center pt-36 pb-32 md:pt-52 md:pb-40 px-6 min-h-[95vh]"
+    class="relative flex flex-col items-center justify-center text-center pt-36 pb-32 md:pt-52 md:pb-40 px-6 min-h-svh"
   >
     <HeroBackground />
 
