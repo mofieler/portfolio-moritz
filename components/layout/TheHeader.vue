@@ -2,15 +2,10 @@
 const { handleSmoothScroll } = useSmoothScroll()
 const { locale } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
-const { isDark } = useColorMode()
-const { triggerTransition } = useViewThemeTransition()
+const { isDark, toggle } = useColorMode()
 
 const isEnglish = computed(() => locale.value === 'en')
 const isGerman = computed(() => locale.value === 'de')
-
-const handleThemeToggle = (event: MouseEvent) => {
-  triggerTransition(event)
-}
 
 // Strip hash fragment — switchLocalePath preserves the current URL hash (#top, #work…)
 // which causes a server/client hydration mismatch and crashes the page on navigation.
@@ -36,13 +31,37 @@ const localePath = (code: 'en' | 'de') => {
 
       <!-- Dark Mode Toggle -->
       <button
-        class="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full text-brand-muted
-          hover:text-brand-text hover:bg-brand-surface border border-transparent
-          hover:border-brand-muted/20 transition-all duration-300"
+        class="theme-toggle"
+        :class="{ 'theme-toggle--toggled': isDark }"
+        type="button"
+        title="Toggle theme"
         :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
-        @click="handleThemeToggle"
+        @click="toggle"
       >
-        <UiIcon :name="isDark ? 'Sun' : 'Moon'" size="md" />
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          aria-hidden="true"
+          width="1em"
+          height="1em"
+          fill="currentColor"
+          class="theme-toggle__around"
+          viewBox="0 0 32 32"
+        >
+          <clipPath id="theme-toggle__around__cutout">
+            <path d="M0 0h42v30a1 1 0 00-16 13H0Z" />
+          </clipPath>
+          <g clip-path="url(#theme-toggle__around__cutout)">
+            <circle cx="16" cy="16" r="8.4" />
+            <g>
+              <circle cx="16" cy="3.3" r="2.3" />
+              <circle cx="27" cy="9.7" r="2.3" />
+              <circle cx="27" cy="22.3" r="2.3" />
+              <circle cx="16" cy="28.7" r="2.3" />
+              <circle cx="5" cy="22.3" r="2.3" />
+              <circle cx="5" cy="9.7" r="2.3" />
+            </g>
+          </g>
+        </svg>
       </button>
 
       <!-- Language Switcher -->

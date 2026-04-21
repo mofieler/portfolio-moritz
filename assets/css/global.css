@@ -322,37 +322,50 @@ body {
 }
 
 /* ============================================
-   View Transitions API - Theme Toggle Animation
+   Theme Toggles - Around Animation
    ============================================ */
 
-/* Root transition group */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
+.theme-toggle {
+  --theme-toggle__around--duration: 500ms;
+  font-size: 1.5rem;
+  color: rgb(var(--brand-muted));
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
 }
 
-/* Custom circular reveal animation for theme toggle */
-::view-transition-new(root) {
-  animation: circular-reveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-  clip-path: circle(0% at var(--transition-origin-x, 50%) var(--transition-origin-y, 50%));
+.theme-toggle:hover {
+  color: rgb(var(--brand-text));
 }
 
-@keyframes circular-reveal {
-  from {
-    clip-path: circle(0% at var(--transition-origin-x, 50%) var(--transition-origin-y, 50%));
-  }
-  to {
-    clip-path: circle(150% at var(--transition-origin-x, 50%) var(--transition-origin-y, 50%));
-  }
+.theme-toggle__around {
+  width: 1em;
+  height: 1em;
 }
 
-/* Disable default crossfade */
-::view-transition-old(root) {
-  display: none;
+.theme-toggle__around > g {
+  transform-origin: center;
+  transition: transform var(--theme-toggle__around--duration) ease;
 }
 
-/* Ensure the new view is visible */
-::view-transition-new(root) {
-  display: block;
+.theme-toggle--toggled .theme-toggle__around > g {
+  transform: rotate(180deg);
+}
+
+.theme-toggle__around > g > circle {
+  transition: transform var(--theme-toggle__around--duration) ease;
+}
+
+.theme-toggle--toggled .theme-toggle__around > g > circle:first-child {
+  transform: translateX(-2px);
+}
+
+.theme-toggle--toggled .theme-toggle__around > g > g > circle {
+  transform: rotate(180deg);
+  transform-origin: center;
 }
