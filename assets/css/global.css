@@ -1,0 +1,310 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================
+   Color-Mode Tokens — RGB triplets for Tailwind opacity modifier support
+   ============================================ */
+
+:root {
+  --brand-bg:         249 248 246; /* #F9F8F6 */
+  --brand-text:       28 25 23;    /* #1C1917 */
+  --brand-muted:      120 113 108; /* #78716C */
+  --brand-surface:    255 255 255; /* #FFFFFF */
+  --brand-terra:      196 122 58;  /* #C47A3A */
+  --brand-terra-dark: 160 98 40;   /* #A06228 */
+  --brand-dark:       26 21 18;    /* #1A1512  */
+}
+
+.dark {
+  --brand-bg:         15 13 11;    /* #0F0D0B */
+  --brand-text:       240 235 229; /* #F0EBE5 */
+  --brand-muted:      155 142 132; /* #9B8E84 */
+  --brand-surface:    30 25 22;    /* #1E1916 */
+  --brand-terra:      196 122 58;  /* same    */
+  --brand-terra-dark: 214 139 74;  /* #D68B4A */
+  --brand-dark:       10 8 6;      /* #0A0806 */
+}
+
+/* ============================================
+   Base Styles & Lenis Required CSS
+   ============================================ */
+
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+body {
+  background-color: rgb(var(--brand-bg));
+  color: rgb(var(--brand-text));
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ============================================
+   Dark Mode — Global Utility Overrides
+   Tailwind's rgb(var() / var(--tw-bg-opacity)) pattern doesn't always cascade
+   through CSS vars. These explicit rules use rgb(var()) directly and cover
+   every brand-color utility across all components — no per-component dark: classes.
+   ============================================ */
+
+/* Backgrounds */
+.dark .bg-brand-bg      { background-color: rgb(var(--brand-bg)); }
+.dark .bg-brand-surface { background-color: rgb(var(--brand-surface)); }
+.dark .bg-brand-dark    { background-color: rgb(var(--brand-dark)); }
+.dark .bg-brand-text    { background-color: rgb(var(--brand-text)); }
+
+/* Text */
+.dark .text-brand-text      { color: rgb(var(--brand-text)); }
+.dark .text-brand-muted     { color: rgb(var(--brand-muted)); }
+.dark .text-brand-terra     { color: rgb(var(--brand-terra)); }
+.dark .text-brand-terraDark { color: rgb(var(--brand-terra-dark)); }
+.dark .text-brand-bg        { color: rgb(var(--brand-bg)); }
+
+/* Borders (non-opacity-modified) */
+.dark .border-brand-text    { border-color: rgb(var(--brand-text)); }
+.dark .border-brand-muted   { border-color: rgb(var(--brand-muted)); }
+.dark .border-brand-surface { border-color: rgb(var(--brand-surface)); }
+
+/* Gradient stops */
+.dark .from-brand-bg {
+  --tw-gradient-from: rgb(var(--brand-bg));
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(0,0,0,0));
+}
+.dark .via-brand-bg {
+  --tw-gradient-stops: var(--tw-gradient-from), rgb(var(--brand-bg)), var(--tw-gradient-to, rgba(0,0,0,0));
+}
+
+/* Shadows — soften in dark mode */
+.dark .shadow-soft  { box-shadow: 0 4px 24px rgba(0,0,0,0.28), 0 1px 2px rgba(0,0,0,0.18); }
+.dark .shadow-hover { box-shadow: 0 12px 40px rgba(0,0,0,0.45), 0 2px 6px rgba(0,0,0,0.25); }
+.dark .shadow-lg    { box-shadow: 0 8px 32px rgba(0,0,0,0.4); }
+.dark .shadow-sm    { box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+
+/* ============================================
+   Typography Components
+   ============================================ */
+
+@layer components {
+  .heading-display {
+    @apply text-fluid-5xl font-display font-bold tracking-[-0.02em] leading-[1.05];
+    color: rgb(var(--brand-text));
+  }
+
+  .heading-section {
+    @apply text-fluid-4xl font-display font-bold tracking-[-0.02em] leading-[1.1];
+    color: rgb(var(--brand-text));
+  }
+
+  .heading-project {
+    @apply text-fluid-3xl font-display font-bold tracking-[-0.01em] leading-[1.15];
+    color: rgb(var(--brand-text));
+  }
+
+  .heading-card {
+    @apply text-fluid-2xl font-display font-bold tracking-[-0.01em] leading-[1.2];
+    color: rgb(var(--brand-text));
+  }
+
+  .eyebrow-text {
+    @apply font-semibold tracking-[0.18em] uppercase text-fluid-xs font-display;
+  }
+
+  .section-label {
+    @apply font-bold tracking-[0.12em] text-fluid-xs uppercase;
+    color: rgb(var(--brand-muted));
+  }
+
+  .body-large {
+    @apply text-fluid-xl font-light leading-relaxed;
+    color: rgb(var(--brand-muted));
+  }
+
+  .body-medium {
+    @apply text-fluid-lg font-normal leading-relaxed;
+    color: rgb(var(--brand-muted));
+  }
+
+  .body-small {
+    @apply text-fluid-base font-normal leading-relaxed;
+    color: rgb(var(--brand-muted));
+  }
+}
+
+/* ============================================
+   Glassmorphism Navigation
+   ============================================ */
+
+.glass-nav {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06), inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+.dark .glass-nav {
+  background: rgba(15, 13, 11, 0.82);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+}
+
+/* ============================================
+   Scroll Reveal Animations
+   ============================================ */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ============================================
+   Project Fallback Gradients
+   ============================================ */
+
+.fallback-paquita {
+  background: linear-gradient(135deg, #E6D0C4 0%, #D8BBAA 100%);
+}
+
+.fallback-hiqer {
+  background: linear-gradient(135deg, #D4E0D1 0%, #B5CDB0 100%);
+}
+
+.fallback-kischde {
+  background: linear-gradient(135deg, #F5EEC0 0%, #E8D87A 100%);
+}
+
+.fallback-beast {
+  background: linear-gradient(135deg, #3A2E2A 0%, #1A1512 100%);
+}
+
+.fallback-thesis {
+  background: linear-gradient(135deg, #D9E4F0 0%, #B8CDE0 100%);
+}
+
+.fallback-stealback {
+  background: linear-gradient(135deg, #2D1F1F 0%, #1A1212 100%);
+}
+
+/* ============================================
+   Selection & Navigation Active States
+   ============================================ */
+
+::selection {
+  background-color: rgb(var(--brand-terra));
+  color: #ffffff;
+}
+
+.nav-item {
+  @apply flex items-center justify-center rounded-full transition-all duration-300;
+}
+
+.nav-item.active {
+  /* brand-text = dark in light mode, light in dark mode; brand-bg inverts accordingly */
+  background-color: rgb(var(--brand-text));
+  color: rgb(var(--brand-bg));
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* ============================================
+   Custom Utilities
+   ============================================ */
+
+.text-gradient-terra {
+  /* Hardcoded: terra accent stays consistent across both modes */
+  background: linear-gradient(to right, #C47A3A, #E0A06A);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ============================================
+   Project Card Hover Effects
+   ============================================ */
+
+.project-glow {
+  @apply absolute inset-0 opacity-0 rounded-[2rem] transition-opacity duration-500 blur-2xl;
+}
+
+.group:hover .project-glow {
+  @apply opacity-10;
+}
+
+/* ============================================
+   Contact Card Hover
+   ============================================ */
+
+.contact-card {
+  @apply bg-white/5 border border-white/10 rounded-[2rem] p-8 transition-all duration-300;
+}
+
+.contact-card:hover {
+  @apply bg-white/10 border-brand-terra/50;
+}
+
+/* ============================================
+   Drawer: shared pill-button & overlay primitives
+   ============================================ */
+
+.drawer-pill-btn {
+  @apply w-10 h-10 rounded-full flex items-center justify-center
+    border border-brand-muted/20 shadow-sm hover:bg-brand-text/10 transition-colors;
+  background-color: rgb(var(--brand-surface));
+  color: rgb(var(--brand-text));
+}
+
+.overlay-nav-btn {
+  @apply w-11 h-11 md:w-12 md:h-12 rounded-full flex items-center justify-center
+    backdrop-blur-md border border-brand-muted/30 shadow-md
+    hover:scale-105 transition-all duration-300;
+  background-color: rgb(var(--brand-surface) / 0.8);
+  color: rgb(var(--brand-text));
+}
+.overlay-nav-btn:hover { background-color: rgb(var(--brand-surface)); }
+
+.overlay-dark-btn {
+  @apply rounded-full flex items-center justify-center
+    bg-black/60 text-white backdrop-blur-sm hover:bg-black/80 hover:scale-105
+    transition-all duration-200;
+}
+
+.lightbox-btn {
+  @apply rounded-full flex items-center justify-center
+    bg-white/10 text-white border border-white/20 backdrop-blur-sm
+    hover:bg-white/20 hover:scale-105 transition-all duration-200;
+}
+
+/* ============================================
+   Ping Animation for Availability Badge
+   ============================================ */
+
+@keyframes ping-slow {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.animate-ping-slow {
+  animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}

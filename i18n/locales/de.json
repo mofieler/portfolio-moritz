@@ -1,0 +1,252 @@
+{
+  "nav": {
+    "home": "Start",
+    "work": "Projekte",
+    "skills": "Skills",
+    "contact": "Kontakt",
+    "available": "Verfügbar für Projekte"
+  },
+  "hero": {
+    "eyebrow": "UX Strategie & Umsetzung",
+    "title": "Die Zukunft gestalten",
+    "titleAccent": "der Interaktion.",
+    "description": "Hi, ich bin {name}. UX Stratege und Frontend-Entwickler, der modulare, nutzerzentrierte digitale Ökosysteme schafft.",
+    "ctaWork": "Projekte entdecken",
+    "ctaContact": "Kontakt aufnehmen",
+    "scroll": "Scrollen"
+  },
+  "work": {
+    "title": "Ausgewählte Projekte.",
+    "subtitle": "Ein Showcase für Strategie, Design und Umsetzung."
+  },
+  "drawer": {
+    "subtitle": "Case Study",
+    "gallery": "Galerie",
+    "features": "Hauptmerkmale",
+    "readMore": "Mehr lesen",
+    "readLess": "Weniger anzeigen",
+    "prev": "Vorheriges",
+    "next": "Nächstes",
+    "close": "Schließen",
+    "prevProject": "Vorheriges Projekt",
+    "nextProject": "Nächstes Projekt",
+    "prevImage": "Vorheriges Bild",
+    "nextImage": "Nächstes Bild",
+    "openFullscreen": "Vollbild öffnen",
+    "showImage": "Bild {n} anzeigen",
+    "galleryEmpty": "Weitere visuelle Details folgen in Kürze.",
+    "featuresEmpty": "Details folgen in Kürze."
+  },
+  "projects": {
+    "paquita-pilates": {
+      "category": "Kunden Webprojekt",
+      "title": "Paquita Pilates — Die digitale Seele eines Studios",
+      "description": "Ein Pilates-Studio mit starker Seele — und eine digitale Präsenz, die nicht mithalten konnte. Ich habe das gesamte Ökosystem von Grund auf gebaut: Markenidentität, UX-Architektur und eine Full-Stack-Buchungsplattform, die sich so persönlich anfühlt wie das Studio selbst.",
+      "longDescription": "Paquita ist mehr als ein Studio — es ist eine Stimmung, eine Community und eine Lehrerin, die einen wirklich sieht. Was fehlte, war ein digitales Erlebnis auf diesem Niveau. Ich übernahm alles: Markenentwicklung, UX-Architektur, UI-Design, API und Frontend. Das Buchungssystem verwaltet Echtzeit-Verfügbarkeit, eine Guthaben-Wallet und rollengetrennte Dashboards für Kunden und Instruktoren. Jeder Screen wurde so gestaltet, dass er warm und ungehetzt wirkt — nichts wie ein SaaS-Produkt, alles wie das Studio selbst. Gebaut mit Vue.js und Ionic, auf einer Node/MongoDB-API, die ich von Grund auf entwickelt habe.",
+      "tags": ["Web Design", "Entwicklung", "Buchungssystem"],
+      "meta": {
+        "role": "Full-Stack & Design",
+        "client": "Paquita Pilates"
+      },
+      "imageAlt": "Paquita Pilates Stuttgart App",
+      "imageAlt2": "Paquita Pilates Mobile Ansicht",
+      "gallery": {
+        "1": "Startbildschirm — Kursplan, Guthaben und sofortige Buchung in einer Ansicht",
+        "2": "Studio-Dashboard — Desktop-Ansicht für Kurse, Kunden und Terminverwaltung"
+      },
+      "features": {
+        "1": { "title": "Intelligente Planung", "desc": "Echtzeit-Verfügbarkeit mit sofortiger Bestätigung — kein Hin und Her, nur Flow." },
+        "2": { "title": "Nahtlos überall", "desc": "Vom Desktop bis Smartphone, das Erlebnis bleibt elegant und intuitiv." },
+        "3": { "title": "Studio-Identität", "desc": "Visuelle Sprache, die authentische Wärme und Erdtöne des physischen Raums widerspiegelt." },
+        "4": { "title": "Zwei Perspektiven", "desc": "Getrennte Interfaces für Kunden und Instruktoren, jeweils optimal auf ihre Bedürfnisse abgestimmt." }
+      }
+    },
+    "hiqer": {
+      "category": "Akademisches Projekt",
+      "title": "HIQER — Überzeugung für draußen",
+      "description": "Was wäre, wenn das Handy dazu brächte, das Handy wegzulegen? HIQER verwandelt Outdoor-Erkundung in ein Wettbewerbsspiel — GPS-Trigger, XP, Leaderboards und eine Watch App, die genau dafür gebaut wurde, Bildschirme in der Tasche zu lassen.",
+      "longDescription": "Die Frage hinter HIQER war bewusst provokativ: Kann eine mobile App dazu bringen, mobile Apps weniger zu nutzen? Die Antwort erforderte eine Persuasive-UX-Ebene auf Basis der Selbstbestimmungstheorie und variabler Belohnungsschleifen. Ich kartierte drei Personas, führte Guerrilla-Tests im Freien durch und iterierte Prototypen bis die Reibung verschwand. Die Apple Watch App war die entscheidende Erkenntnis — durch übersichtliche Darstellung und Haptik musste das Handy die Tasche nie verlassen. Bestnote. Präsentiert beim HdM Digital Innovation Forum.",
+      "tags": ["UX Design", "Gamification", "Persuasive Design"],
+      "meta": {
+        "focus": "Natur & Bewegung",
+        "feature": "Quests & Ranking"
+      },
+      "imageAlt": "HIQER App",
+      "imageAlt2": "HIQER Uhr",
+      "gallery": {
+        "1": "Quest-Karte — GPS-gesteuerte Outdoor-Challenges verteilt über die Stadt",
+        "2": "Aktive Quests — XP-Verfolgung, Fortschrittsbalken und bevorstehende Belohnungen",
+        "3": "Leaderboard — soziales Ranking für freundschaftlichen Wettbewerb unter Entdeckern",
+        "4": "Apple Watch Begleiter — übersichtliche Navigation und Haptik, Handy bleibt in der Tasche"
+      },
+      "features": {
+        "1": { "title": "Standort-Trigger", "desc": "QR-Spots und GPS entsperren kontextuelle Inhalte genau dort, wo die Neugier erwacht." },
+        "2": { "title": "Spielerischer Fortschritt", "desc": "XP, Level und Rankings verwandeln jeden Spaziergang in ein Erlebnis." },
+        "3": { "title": "Cross-Device Flow", "desc": "Smartwatch-Navigation bedeutet: Das Handy bleibt in der Tasche beim Erkunden." },
+        "4": { "title": "Neugier-Engine", "desc": "Historisches Storytelling und lokale Geheimnisse an exakten Koordinaten enthüllt." }
+      }
+    },
+    "kischde": {
+      "category": "Nachhaltige Plattform",
+      "title": "Kischde — Tauschen im Vertrauen",
+      "description": "Kein Marktplatz-Lärm. Keine Fremden. Nur ein Vertrauenskreis — und die Dinge, die man nicht mehr braucht. Kischde ist eine Swipe-first Tauschplattform, gebaut auf der Überzeugung, dass Geben sich besser anfühlen sollte als Verkaufen.",
+      "longDescription": "Fünf Personen. Enger Zeitplan. Echte Deployment-Ambitionen. Kischde fühlte sich wie ein echter Produktlaunch an — Druck, Abwägungen und der ständige Konflikt zwischen dem, was man wollte, und dem, wofür Zeit blieb. Ich leitete das UX-System-Design und verantwortete einen Großteil des Vue.js/Ionic-Frontends. Die zentrale Herausforderung: eine Tauschanwendung, die sich in nichts nach einem Marktplatz anfühlt. Die Antwort waren Kreise — man sieht nur Artikel von eingeladenen Personen und eliminiert damit die Anonymität öffentlicher Listings. Swipe-first-Navigation hielt die kognitive Belastung minimal. Das Backend wurde auf Skalierbarkeit ausgelegt, ohne das MVP zu überfrachten.",
+      "tags": ["Vue.js & Ionic", "MongoDB", "UX System"],
+      "meta": {
+        "role": "Full-Stack Entwickler",
+        "team": "5 Personen"
+      },
+      "imageAlt": "Kischde App",
+      "imageAlt2": "Kischde App Bildschirm 2",
+      "gallery": {
+        "1": "Startseite — Artikel aus deinem Vertrauenskreis, ohne Marktplatz-Anonymität",
+        "2": "Profilansicht — eigene Angebote, Tauschhistorie und Vertrauensverbindungen"
+      },
+      "features": {
+        "1": { "title": "Kreisbasiert", "desc": "Austausch nur in vertrauten Freundesgruppen — bekannte Gesichter, keine Reibung." },
+        "2": { "title": "Zirkulär by Design", "desc": "Jeder Tausch verlängert Produktlebenszyklen und reduziert Abfall natürlich." },
+        "3": { "title": "Mobile-First", "desc": "Plattformunabhängige Architektur. Deine Gegenstände, immer griffbereit." },
+        "4": { "title": "Müheloser Flow", "desc": "Intuitive Gesten zum Geben und Anfragen — keine Formulare, keine Reibung." }
+      }
+    },
+    "steal-back": {
+      "category": "Game Design & Konzept",
+      "title": "Steal Back — Spielen als Protest",
+      "description": "Ein 2D Pixel-Art Puzzle-Platformer, wo Aktivismus auf Gameplay trifft. Enthülle kolonialen Kunstraub am Tag, fordere Geschichte nachts zurück. Basierend auf wahren Ereignissen, die erinnert werden müssen.",
+      "longDescription": "Steal Back entstand aus einem Rechercheprojekt über koloniale Kunstrestitution. Statt einer Seminararbeit entwarf ich ein spielbares Argument. Der Tag-Nacht-Zyklus ist der zentrale Mechanismus: tagsüber recherchiert die Spielfigur — liest Archive, spricht mit NPCs, baut einen Fall auf. Nachts handelt sie — durch Stealth und Rätsel, um die gestohlenen Objekte zurückzugewinnen. Jedes zurückgeholte Stück löst eine sachliche Zusammenfassung des echten Diebstahls aus, auf dem es basiert. Die Pixel-Art-Ästhetik wurde bewusst gewählt — sie codiert als 'sicher und verspielt' und trägt gleichzeitig ernstes historisches Gewicht.",
+      "tags": ["Game Design", "Pixel Art", "2D Platformer"],
+      "meta": {
+        "genre": "Puzzle Platformer",
+        "basis": "Historische Ereignisse"
+      },
+      "imageAlt": "Steal Back Spiel",
+      "features": {
+        "1": { "title": "Tag & Nacht", "desc": "Informationsbeschaffung verwandelt sich in Stealth-Action, wenn die Dunkelheit fällt." },
+        "2": { "title": "Puzzle-Meisterschaft", "desc": "Umwelt-Herausforderungen, die Strategie, Timing und Kreativität fordern." },
+        "3": { "title": "Historische Verankerung", "desc": "Jedes Kunstwerk erzählt eine wahre koloniale Geschichte — spiele, um zu erinnern." },
+        "4": { "title": "Pixel-Artistry", "desc": "Handgefertigte Retro-Ästhetik mit moderner Tiefe und Atmosphäre." }
+      }
+    },
+    "beast": {
+      "category": "Mercedes-Benz AMG",
+      "title": "B.E.A.S.T. — Der Klang der Kraft",
+      "description": "EV-Laden ist stumm. Passiv. Losgelöst von der Marke, für die man sich entschieden hat. B.E.A.S.T. ist die Antwort — eine multisensorische Ebene aus Licht, Haptik und Sound, die jeden Ladevorgang zu einem Ritual macht, das dem AMG-Badge würdig ist.",
+      "longDescription": "Verbrenner hatten einen Herzschlag. Ein Aufheulen beim Start. Ein Gefühl, das sagte: das ist etwas. Elektrofahrzeuge haben das verloren — und AMG-Fahrer spüren diese Lücke. B.E.A.S.T. (Battery Enhanced AMG Sensory Technology) war meine Antwort: eine choreographierte Feedback-Ebene über die LED-Streifen des Fahrzeugs, eine proprietäre haptische Signatur durch das Ladekabel und eine Klanglandschaft, die sich mit dem Ladestand weiterentwickelt. Ich konzipierte und führte biometrische sensorische UX-Forschung zur Intensitätskalibrierung durch. Das Konzept wurde AMG-Führungskräften präsentiert. Dokumentiert in einer 60-seitigen Forschungsarbeit.",
+      "tags": ["UX Research", "Multisensorisches Design", "Haptik"],
+      "meta": {
+        "partner": "Mercedes-Benz AMG",
+        "context": "HdM Stuttgart"
+      },
+      "imageAlt": "Projekt B.E.A.S.T.",
+      "features": {
+        "1": { "title": "Licht-Choreographie", "desc": "Visueller Ladefortschritt synchronisiert mit Audio — eine atmosphärische Lichtshow." },
+        "2": { "title": "Haptische Signatur", "desc": "Vibrationsmuster im AMG-Puls, spürbar durch das Kabel." },
+        "3": { "title": "Signatur-Sound", "desc": "Emotionale Klanglandschaften einzigartig für AMG — der Heartbeat, wiedergeboren." },
+        "4": { "title": "Gespürter Fortschritt", "desc": "Multisensorisches Feedback, das Warten in ein immersives Erlebnis verwandelt." }
+      }
+    },
+    "emobility": {
+      "category": "Mercedes-Benz Customer Solutions",
+      "title": "Bachelorarbeit E-Mobility — Ein Ökosystem",
+      "description": "Fünf Produkte. Fünf separate Apps. Null gemeinsamer Kontext. Meine Bachelorarbeit hat neu imaginiert, wie vernetzte E-Mobilität aussieht, wenn Auto, Wallbox und Heimnetz endlich dieselbe Sprache sprechen. Benotet mit 1,0.",
+      "longDescription": "Mercedes-Benz-Kunden mit einem vollständigen EV-Ökosystem — Fahrzeug, Wallbox, Solaranlage, Heimnetz — verwalteten alles in getrennten, isolierten Apps. Meine Bachelorarbeit fragte: Was, wenn ein einziges Interface alles enthielte? Ich entwarf die Antwort — von der Informationsarchitektur bis zu pixelgenauen Mockups: eine Dynamic-Island-Integration für Live-Ladestatus, ein Energie-Dashboard, intelligente Abfahrtsplanung und ein V2L-Kontrollzentrum. Zwölf Konkurrenzprodukte analysiert. Experteninterviews geführt. Jede Designentscheidung forschungsbasiert. Entwickelt in Kooperation mit der Mercedes-Benz Customer Solutions GmbH. Benotet mit 1,0.",
+      "tags": ["UI Konzept", "IoT Ecosystem", "Interaction Design"],
+      "meta": {
+        "partner": "Mercedes-Benz CS GmbH",
+        "keywords": "Efficiency · Responsive"
+      },
+      "imageAlt": "E-Mobility App Bildschirm 1",
+      "imageAlt2": "E-Mobility App Bildschirm 2",
+      "gallery": {
+        "1": "Startbildschirm — Fahrzeugstatus, Ladestand und Energieübersicht auf einen Blick",
+        "2": "Dynamic Island Integration — Live-Ladestatus ohne App-Öffnung sichtbar",
+        "3": "Energie-Dashboard — Zuhause, Wallbox und Netz in einer vereinheitlichten Ansicht",
+        "4": "Intelligentes Laden — Abfahrtszeitplanung optimiert Kosten und Ökostromnutzung",
+        "5": "Modulares Menü — jede Funktion ist ein eigenes Widget, skaliert von Schnellblick bis Vollkontrolle"
+      },
+      "features": {
+        "1": { "title": "Vereinheitlichte Kontrolle", "desc": "Ein Interface für alle AMG EQ Produkte — nahtloses Wechseln, keine Verwirrung." },
+        "2": { "title": "Energie-Intelligenz", "desc": "Intelligente Optimierung über Geräte hinweg, vom Fahrzeug bis zur Wallbox und zum Netz." },
+        "3": { "title": "Modulare Skalierung", "desc": "Von kompakten Widgets bis zu vollen Dashboards — Informationsdichte passt sich dem Kontext an." },
+        "4": { "title": "Zukunfts-Ready", "desc": "Fundament-Architektur für Next-Gen vernetzte Mobilitätserlebnisse." }
+      }
+    }
+  },
+  "skills": {
+    "title": "Kernkompetenzen",
+    "subtitle": "Verbindung von Recherche, Design und robustem Code.",
+    "ux-design": {
+      "title": "UX Design & Research",
+      "description": "Forschungsbasierte Konzeptentwicklung. Transformation von Nutzerbedürfnissen und Daten in nahtlose, überzeugende Interfaces.",
+      "tags": ["Figma", "Prototyping", "Think-Aloud", "UEQ"]
+    },
+    "frontend": {
+      "title": "Frontend Entwicklung",
+      "description": "Saubere, modulare technische Umsetzung von Design Systemen. Entwicklung schneller, responsiver und wartbarer Anwendungen.",
+      "tags": ["Vue.js", "Nuxt", "Ionic", "TypeScript"]
+    },
+    "backend": {
+      "title": "Backend & Systeme",
+      "description": "Überbrückung der Lücke zwischen Frontend-UI und Serverarchitektur für End-to-End-Funktionalität und Performance.",
+      "tags": ["Node.js", "MongoDB", "REST APIs", "Git"]
+    }
+  },
+  "timeline": {
+    "dhbw": {
+      "period": "Oktober 2025 — Heute",
+      "role": "IT Solution Designer\n& Projektmanager",
+      "description": "Entwicklung von Digitalisierungskonzepten für verschiedene Bereiche der Dualen Hochschule Baden-Württemberg. Projektmanager für die Weiterentwicklung des Campus-Management-Systems."
+    },
+    "mercedes-student": {
+      "period": "Mai 2023 — September 2025",
+      "role": "Werkstudent\nUX Design",
+      "description": "Design von Benutzeroberflächen (UI-Konzepte) für Produktplattformen der Automobilgruppe im Bereich digitale Innovationen — direkter Einfluss auf die Bachelorarbeit zum Thema E-Mobility."
+    },
+    "mercedes-intern": {
+      "period": "Februar 2022 — August 2022",
+      "role": "Praktikum\nUI / UX Design",
+      "description": "Design von UI/UX-Konzepten für das Infotainment-System der Fahrzeuge \"Mercedes-Benz User Experience\" (MBUX) im Entertainment-Bereich — Grundlage für das spätere B.E.A.S.T. Projekt."
+    },
+    "travel": {
+      "period": "Januar 2019 — September 2019",
+      "role": "Work & Travel",
+      "description": "Arbeit im Cosmo Elqui Hostel in La Serena, Aufenthalt bei einer chilenischen Gastfamilie und Reisen durch Chile und Südperu — prägende Erfahrung für interkulturelles Denken und Design-Empathie."
+    },
+    "education": {
+      "hdm": {
+        "period": "Seit Oktober 2019",
+        "degree": "B.Sc. Mobile Media",
+        "school": "Hochschule der Medien Stuttgart"
+      },
+      "abi": {
+        "period": "September 2015 — Juli 2018",
+        "degree": "Abitur Design & Medientechnik",
+        "school": "Technisches Gymnasium Horb a.N."
+      }
+    }
+  },
+  "contact": {
+    "title": "Lass uns connecten.",
+    "subtitle": "Offen für spannende Projekte, Freelance-Möglichkeiten und Festanstellungen im Bereich UX Strategie & Umsetzung. Ansässig in Stuttgart.",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "location": "Standort",
+    "form": {
+      "name": "Name",
+      "email": "E-Mail",
+      "message": "Nachricht",
+      "submit": "Nachricht senden",
+      "sending": "Wird gesendet...",
+      "success": "Nachricht erfolgreich gesendet!",
+      "error": "Ein Fehler ist aufgetreten. Bitte versuche es erneut."
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Moritz Fieler. Alle Rechte vorbehalten.",
+    "links": {
+      "ux": "UX Strategie",
+      "dev": "Frontend Dev",
+      "portfolio": "Portfolio"
+    }
+  }
+}
