@@ -146,7 +146,7 @@
         "./nuxt-i18n-logger"
       ],
       "#app-manifest": [
-        "./manifest/meta/af69d6a6-ba7b-41be-8858-4e8de6af245d"
+        "./manifest/meta/dev"
       ],
       "#components": [
         "./components"
@@ -200,6 +200,6 @@
     "../.data",
     "../node_modules/runtime/server",
     "../node_modules/dist/runtime/server",
-    "../.output"
+    "dev"
   ]
 }
