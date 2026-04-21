@@ -167,28 +167,48 @@ body {
    Scroll Reveal Animations
    ============================================ */
 
+/* Default: visible. Animation only engages on hover-capable devices (desktop) where JS will add .active. */
 .reveal {
-  opacity: 0;
-  transform: translateY(24px);
-  filter: blur(10px);
-  transition:
-    opacity   0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
-    filter    0.75s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.reveal.active {
   opacity: 1;
-  transform: translateY(0);
-  filter: blur(0px);
+  transform: none;
+  filter: none;
 }
 
-/* Stagger delay helpers — apply alongside .reveal */
-.reveal-d1 { transition-delay: 80ms; }
-.reveal-d2 { transition-delay: 180ms; }
-.reveal-d3 { transition-delay: 280ms; }
-.reveal-d4 { transition-delay: 380ms; }
-.reveal-d5 { transition-delay: 480ms; }
+/* Desktop (fine pointer + hover) — hide initially and animate in when .active is added by JS */
+@media (hover: hover) and (pointer: fine) {
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    filter: blur(10px);
+    transition:
+      opacity   0.85s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+      filter    0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0px);
+  }
+
+  /* Stagger delay helpers — apply alongside .reveal */
+  .reveal-d1 { transition-delay: 80ms; }
+  .reveal-d2 { transition-delay: 180ms; }
+  .reveal-d3 { transition-delay: 280ms; }
+  .reveal-d4 { transition-delay: 380ms; }
+  .reveal-d5 { transition-delay: 480ms; }
+}
+
+/* Respect reduced-motion — always visible, no transitions */
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+}
 
 /* ============================================
    Project Fallback Gradients
@@ -336,11 +356,6 @@ body {
   a, button, [role="button"], .nav-item {
     touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
-  }
-
-  /* Fix for content not rendering */
-  main, section, article {
-    transform: translateZ(0);
   }
 
   /* Ensure floating nav works properly on iOS */
