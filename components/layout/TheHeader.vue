@@ -19,7 +19,7 @@ const localePath = (code: 'en' | 'de') => {
   <header class="fixed top-0 left-0 w-full z-40 px-4 py-3 md:p-8 pointer-events-none flex justify-between items-center glass-nav">
     <!-- Logo -->
     <a
-      href="#top"
+      href="www.moritzfieler.de"
       class="nav-trigger text-xl md:text-fluid-2xl font-display font-bold tracking-tighter text-brand-text pointer-events-auto hover:opacity-70 transition-opacity leading-tight"
       @click="(e: MouseEvent) => handleSmoothScroll(e, '#top')"
     >
