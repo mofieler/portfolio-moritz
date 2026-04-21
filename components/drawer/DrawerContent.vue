@@ -83,7 +83,16 @@ const parsedSections = computed(() => {
 })
 
 const formattedContent = (content: string) => {
-  return content.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+  // First handle bold text
+  let formatted = content.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+  
+  // Then handle hex color codes - wrap them with a colored dot
+  formatted = formatted.replace(
+    /(#[0-9A-Fa-f]{6})/g,
+    '<span class="color-swatch-wrapper"><span class="color-swatch" style="background-color: $1;"></span><code class="color-code">$1</code></span>'
+  )
+  
+  return formatted
 }
 
 watch(() => props.project.id, () => {
@@ -281,6 +290,23 @@ watch(() => props.project.id, () => {
 /* Add space between sections */
 .case-study-content > * + .case-study-heading {
   @apply mt-8;
+}
+
+/* Color swatch styles */
+.color-swatch-wrapper {
+  @apply inline-flex items-center gap-2 px-2 py-1 rounded-md;
+  background-color: rgb(var(--brand-surface));
+  vertical-align: middle;
+}
+
+.color-swatch {
+  @apply w-4 h-4 rounded-full flex-shrink-0;
+  border: 1px solid rgb(var(--brand-muted) / 0.3);
+}
+
+.color-code {
+  @apply text-xs font-mono;
+  color: rgb(var(--brand-muted));
 }
 
 .section-head {
