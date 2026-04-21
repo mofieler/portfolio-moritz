@@ -56,9 +56,9 @@ onBeforeUnmount(() => clearTimeout(timer))
   >
     <HeroBackground />
 
-    <div class="relative z-10 max-w-4xl mx-auto reveal">
+    <div class="relative z-10 max-w-4xl mx-auto">
       <!-- Profile picture -->
-      <div class="flex justify-center mb-8">
+      <div class="flex justify-center mb-8 reveal reveal-d1">
         <div class="relative inline-block">
           <!-- Outer glow ring -->
           <div class="absolute inset-0 rounded-full animate-pulse-slow"
@@ -81,11 +81,11 @@ onBeforeUnmount(() => clearTimeout(timer))
         </div>
       </div>
 
-      <span class="eyebrow-text text-brand-terra mb-6 block">
+      <span class="eyebrow-text text-brand-terra mb-6 block reveal reveal-d2">
         {{ $t('hero.eyebrow') }}
       </span>
 
-      <h1 class="heading-display mb-8">
+      <h1 class="heading-display mb-8 reveal reveal-d3">
         {{ $t('hero.title') }}
         <br class="hidden md:block" />
         <span class="text-gradient-terra">
@@ -93,11 +93,11 @@ onBeforeUnmount(() => clearTimeout(timer))
         </span>
       </h1>
 
-      <p class="body-large max-w-2xl mx-auto mb-12">
+      <p class="body-large max-w-2xl mx-auto mb-12 reveal reveal-d4">
         {{ $t('hero.description', { name: PERSONAL_NAME }) }}
       </p>
 
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto px-4 sm:px-0">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto px-4 sm:px-0 reveal reveal-d5">
         <UiButton
           href="#work"
           variant="primary"
@@ -116,7 +116,7 @@ onBeforeUnmount(() => clearTimeout(timer))
     </div>
 
     <!-- Powered By bar — hidden on mobile to avoid overlap with floating nav -->
-    <div class="hidden md:flex absolute z-10 bottom-24 left-0 right-0 justify-center px-4">
+    <div class="hidden md:flex absolute z-10 bottom-24 left-0 right-0 justify-center px-4 reveal reveal-d5">
       <div class="flex items-center gap-3 md:gap-4 bg-brand-text/[0.04] border border-brand-muted/15 rounded-full px-5 py-2.5 backdrop-blur-sm flex-wrap justify-center">
         <span class="font-bold tracking-[0.20em] uppercase text-brand-terra text-[10px] shrink-0">
           POWERED BY
