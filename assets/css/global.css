@@ -320,3 +320,39 @@ body {
 .animate-ping-slow {
   animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
+
+/* ============================================
+   View Transitions API - Theme Toggle Animation
+   ============================================ */
+
+/* Root transition group */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Custom circular reveal animation for theme toggle */
+::view-transition-new(root) {
+  animation: circular-reveal 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  clip-path: circle(0% at var(--transition-origin-x, 50%) var(--transition-origin-y, 50%));
+}
+
+@keyframes circular-reveal {
+  from {
+    clip-path: circle(0% at var(--transition-origin-x, 50%) var(--transition-origin-y, 50%));
+  }
+  to {
+    clip-path: circle(150% at var(--transition-origin-x, 50%) var(--transition-origin-y, 50%));
+  }
+}
+
+/* Disable default crossfade */
+::view-transition-old(root) {
+  display: none;
+}
+
+/* Ensure the new view is visible */
+::view-transition-new(root) {
+  display: block;
+}

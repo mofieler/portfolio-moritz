@@ -2,14 +2,14 @@
 const { handleSmoothScroll } = useSmoothScroll()
 const { locale } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
-const { isDark, toggle } = useColorMode()
-const { triggerTransition } = useThemeTransition()
+const { isDark } = useColorMode()
+const { triggerTransition } = useViewThemeTransition()
 
 const isEnglish = computed(() => locale.value === 'en')
 const isGerman = computed(() => locale.value === 'de')
 
 const handleThemeToggle = (event: MouseEvent) => {
-  triggerTransition(event, toggle)
+  triggerTransition(event)
 }
 
 // Strip hash fragment — switchLocalePath preserves the current URL hash (#top, #work…)

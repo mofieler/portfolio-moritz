@@ -8,5 +8,4 @@ onMounted(init)
   <NuxtLayout>
     <NuxtPage />
   </NuxtLayout>
-  <ThemeTransitionOverlay />
 </template>

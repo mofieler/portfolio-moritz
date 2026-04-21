@@ -19,13 +19,14 @@ const { isAnimating, clipPath, isExpanding } = useThemeTransition()
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  background-color: rgb(23 23 23); /* dark bg */
+  /* Light mode circle - expands to reveal light mode from dark */
+  background-color: rgb(240 241 237);
   transition: clip-path 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: clip-path;
 }
 
-/* When contracting back to light, we use the same dark bg but clip-path reveals light underneath */
+/* When expanding to dark mode, use dark circle */
 .theme-transition-layer.is-expanding {
-  /* Already expanding to dark */
+  background-color: rgb(23 23 23);
 }
 </style>
