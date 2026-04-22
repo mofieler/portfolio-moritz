@@ -74,8 +74,14 @@ export const useScrollReveal = (selector: string = '.reveal', options?: { thresh
       )
     }
 
-    // Wait one frame so dynamically inserted children (post-hydration) are in the DOM.
-    requestAnimationFrame(scan)
+    // Wait for nextTick then one more frame to ensure hydration is complete
+    // This is crucial for mobile where hydration timing differs
+    nextTick(() => {
+      requestAnimationFrame(() => {
+        // Small delay for mobile browsers to settle
+        setTimeout(scan, 50)
+      })
+    })
   })
 
   // Re-scan after route changes — new page = new reveal targets.

@@ -26,9 +26,10 @@ defineEmits<{
         aria-modal="true"
       >
         <div
-          class="drawer-backdrop"
+          class="drawer-backdrop touch-manipulation"
           aria-hidden="true"
           @click="$emit('close')"
+          @touchend.prevent="$emit('close')"
         ></div>
 
         <Transition name="drawer-slide" appear>

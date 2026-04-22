@@ -43,9 +43,10 @@ const { category, title, description, tags, imageAlt, imageAlt2 } = useTranslate
   <div class="grid lg:grid-cols-2 gap-10 lg:gap-20 items-center">
     <!-- Text — always clickable so video projects can still open the drawer -->
     <div
-      class="space-y-5 md:space-y-6 cursor-pointer"
+      class="space-y-5 md:space-y-6 cursor-pointer touch-manipulation"
       :class="reversed ? 'order-1 lg:order-2' : 'order-2 lg:order-1'"
       @click="$emit('select', project)"
+      @touchend.prevent="$emit('select', project)"
     >
       <SectionLabel :number="project.num" :category="category" />
       <h3 class="heading-project">{{ title }}</h3>
@@ -64,12 +65,13 @@ const { category, title, description, tags, imageAlt, imageAlt2 } = useTranslate
 
     <!-- Visual — click opens drawer (except video: iframe captures its own clicks) -->
     <div
-      class="relative group w-full order-1"
+      class="relative group w-full order-1 touch-manipulation"
       :class="[
         reversed ? 'lg:order-1' : 'lg:order-2',
         project.visual !== 'video' ? 'cursor-pointer' : '',
       ]"
       @click="project.visual !== 'video' && $emit('select', project)"
+      @touchend.prevent="project.visual !== 'video' && $emit('select', project)"
     >
       <div class="project-glow" :class="project.fallbackClass ? '' : 'bg-brand-terra'"></div>
 

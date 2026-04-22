@@ -91,11 +91,12 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
     <div v-if="total > 0" :class="{ 'mt-8': videoSrc }">
       <!-- Main Stage -->
       <div
-        class="stage group"
+        class="stage group touch-manipulation"
         :class="accentClass || 'stage-default'"
         @mouseenter="activeCaption ? (captionVisible = true) : null"
         @mouseleave="captionVisible = false"
         @click="toggleCaption"
+        @touchend.prevent="toggleCaption"
       >
         <Transition name="stage-fade" mode="out-in">
           <img
@@ -119,17 +120,19 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
 
         <button
           v-if="hasMany"
-          class="overlay-nav-btn stage-nav stage-nav-prev"
+          class="overlay-nav-btn stage-nav stage-nav-prev touch-manipulation"
           :aria-label="$t('drawer.prevImage')"
           @click.stop="prev"
+          @touchend.prevent="prev"
         >
           <UiIcon name="ChevronLeft" size="lg" />
         </button>
         <button
           v-if="hasMany"
-          class="overlay-nav-btn stage-nav stage-nav-next"
+          class="overlay-nav-btn stage-nav stage-nav-next touch-manipulation"
           :aria-label="$t('drawer.nextImage')"
           @click.stop="next"
+          @touchend.prevent="next"
         >
           <UiIcon name="ChevronRight" size="lg" />
         </button>
@@ -141,9 +144,10 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
             {{ String(total).padStart(2, '0') }}
           </span>
           <button
-            class="overlay-dark-btn w-9 h-9"
+            class="overlay-dark-btn w-9 h-9 touch-manipulation"
             :aria-label="$t('drawer.openFullscreen')"
             @click.stop="openFullscreen"
+            @touchend.prevent="openFullscreen"
           >
             <UiIcon name="Expand" size="sm" />
           </button>
@@ -155,10 +159,11 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
         <button
           v-for="(item, index) in gallery"
           :key="item.src"
-          class="thumb"
+          class="thumb touch-manipulation"
           :class="{ 'thumb-active': index === activeIndex }"
           :aria-label="$t('drawer.showImage', { n: index + 1 })"
           @click="goTo(index)"
+          @touchend.prevent="goTo(index)"
         >
           <img :src="item.src" :alt="`${title} thumbnail ${index + 1}`" loading="lazy">
         </button>
@@ -170,24 +175,27 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
       <Transition name="lb-fade">
         <div
           v-if="isFullscreen && gallery"
-          class="lightbox"
+          class="lightbox touch-manipulation"
           role="dialog"
           aria-modal="true"
           @click.self="closeFullscreen"
+          @touchend.self.prevent="closeFullscreen"
         >
           <button
-            class="lightbox-btn lb-close w-11 h-11"
+            class="lightbox-btn lb-close w-11 h-11 touch-manipulation"
             :aria-label="$t('drawer.close')"
             @click="closeFullscreen"
+            @touchend.prevent="closeFullscreen"
           >
             <UiIcon name="X" size="md" />
           </button>
 
           <button
             v-if="hasMany"
-            class="lightbox-btn lb-nav lb-nav-prev w-12 h-12 md:w-14 md:h-14"
+            class="lightbox-btn lb-nav lb-nav-prev w-12 h-12 md:w-14 md:h-14 touch-manipulation"
             :aria-label="$t('drawer.prevImage')"
             @click="prev"
+            @touchend.prevent="prev"
           >
             <UiIcon name="ChevronLeft" size="lg" />
           </button>
@@ -200,9 +208,10 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
 
           <button
             v-if="hasMany"
-            class="lightbox-btn lb-nav lb-nav-next w-12 h-12 md:w-14 md:h-14"
+            class="lightbox-btn lb-nav lb-nav-next w-12 h-12 md:w-14 md:h-14 touch-manipulation"
             :aria-label="$t('drawer.nextImage')"
             @click="next"
+            @touchend.prevent="next"
           >
             <UiIcon name="ChevronRight" size="lg" />
           </button>

@@ -154,8 +154,9 @@ watch(() => props.project.id, () => {
       <div class="action-row">
         <button
           v-if="isExpandable"
-          class="desc-toggle"
+          class="desc-toggle touch-manipulation"
           @click="isDescExpanded = !isDescExpanded"
+          @touchend.prevent="isDescExpanded = !isDescExpanded"
         >
           {{ isDescExpanded ? $t('drawer.readLess') : $t('drawer.readMore') }}
           <UiIcon

@@ -5,8 +5,10 @@ const activeSection = ref('top')
 
 const justClicked = ref(false)
 const clickTimeout: Ref<ReturnType<typeof setTimeout> | null> = ref(null)
+const isHydrated = ref(false)
 
-const handleNavClick = (e: MouseEvent, id: string) => {
+const handleNavClick = (e: MouseEvent | TouchEvent, id: string) => {
+  e.preventDefault()
   activeSection.value = id
   justClicked.value = true
 
@@ -16,7 +18,7 @@ const handleNavClick = (e: MouseEvent, id: string) => {
     justClicked.value = false
   }, 1500)
 
-  handleSmoothScroll(e, `#${id}`)
+  handleSmoothScroll(e as MouseEvent, `#${id}`)
 }
 
 const NAV_ITEMS = [
@@ -29,49 +31,78 @@ const NAV_ITEMS = [
 const SECTION_IDS = ['top', 'work', 'skills', 'contact'] as const
 
 let unsubscribe: (() => void) | undefined
+let rafId: number | null = null
+
+const updateActiveSection = () => {
+  if (!process.client || !isHydrated.value) return
+
+  const scroll = window.scrollY
+  const windowHeight = window.innerHeight
+
+  const sections: { id: string; top: number; bottom: number }[] = []
+  for (const id of SECTION_IDS) {
+    const el = document.getElementById(id)
+    if (el) {
+      const rect = el.getBoundingClientRect()
+      sections.push({
+        id,
+        top: scroll + rect.top,
+        bottom: scroll + rect.bottom,
+      })
+    }
+  }
+  if (sections.length === 0) return
+
+  const midpoint = scroll + windowHeight * 0.5
+
+  // Standard scroll-spy: last section whose top has passed the viewport midpoint
+  let newActive = sections[0].id
+  for (const section of sections) {
+    if (section.top <= midpoint) newActive = section.id
+  }
+
+  // Contact override: activate once its top reaches 40% into viewport
+  const contact = sections.find(s => s.id === 'contact')
+  if (contact) {
+    const contactThreshold = scroll + windowHeight * 0.4
+    if (contact.top <= contactThreshold && contact.bottom > scroll) {
+      newActive = 'contact'
+    }
+  }
+
+  activeSection.value = newActive
+}
+
 onMounted(() => {
-  unsubscribe = onScroll(({ scroll, velocity }) => {
-    if (justClicked.value) return
-    if (Math.abs(velocity) > 0.5) return
+  if (!process.client) return
 
-    const sections: { id: string; top: number; bottom: number }[] = []
-    for (const id of SECTION_IDS) {
-      const el = document.getElementById(id)
-      if (el) {
-        const rect = el.getBoundingClientRect()
-        sections.push({
-          id,
-          top: scroll + rect.top,
-          bottom: scroll + rect.bottom,
+  // Wait for hydration to complete
+  nextTick(() => {
+    isHydrated.value = true
+
+    // Initial calculation
+    updateActiveSection()
+
+    // Use RAF-throttled scroll updates for better mobile performance
+    let ticking = false
+    unsubscribe = onScroll(() => {
+      if (justClicked.value) return
+
+      if (!ticking) {
+        rafId = requestAnimationFrame(() => {
+          updateActiveSection()
+          ticking = false
         })
+        ticking = true
       }
-    }
-    if (sections.length === 0) return
-
-    const midpoint = scroll + window.innerHeight * 0.5
-
-    // Standard scroll-spy: last section whose top has passed the viewport midpoint
-    let newActive = sections[0].id
-    for (const section of sections) {
-      if (section.top <= midpoint) newActive = section.id
-    }
-
-    // Contact override: activate once its top reaches 40% into viewport
-    const contact = sections.find(s => s.id === 'contact')
-    if (contact) {
-      const contactThreshold = scroll + window.innerHeight * 0.4
-      if (contact.top <= contactThreshold && contact.bottom > scroll) {
-        newActive = 'contact'
-      }
-    }
-
-    activeSection.value = newActive
+    })
   })
 })
 
 onBeforeUnmount(() => {
   unsubscribe?.()
   if (clickTimeout.value) clearTimeout(clickTimeout.value)
+  if (rafId) cancelAnimationFrame(rafId)
 })
 </script>
 
@@ -86,6 +117,7 @@ onBeforeUnmount(() => {
         :class="{ active: activeSection === item.id }"
         :aria-label="$t(item.label)"
         @click="(e: MouseEvent) => handleNavClick(e, item.id)"
+        @touchend.prevent="(e: TouchEvent) => handleNavClick(e, item.id)"
       >
         <UiIcon :name="item.icon" size="lg" />
       </a>

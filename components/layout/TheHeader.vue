@@ -22,6 +22,7 @@ const localePath = (code: 'en' | 'de') => {
       href="www.moritzfieler.de"
       class="nav-trigger text-xl md:text-fluid-2xl font-display font-bold tracking-tighter text-brand-text pointer-events-auto hover:opacity-70 transition-opacity leading-tight"
       @click="(e: MouseEvent) => handleSmoothScroll(e, '#top')"
+      @touchend.prevent="(e: TouchEvent) => handleSmoothScroll(e as unknown as MouseEvent, '#top')"
     >
       Mindcoded by Mo.
     </a>
@@ -36,6 +37,7 @@ const localePath = (code: 'en' | 'de') => {
           hover:border-brand-muted/20 transition-all duration-300"
         :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
         @click="toggle"
+        @touchend.prevent="toggle"
       >
         <UiIcon :name="isDark ? 'Sun' : 'Moon'" size="md" />
       </button>
@@ -59,6 +61,7 @@ const localePath = (code: 'en' | 'de') => {
         href="#contact"
         class="hidden md:flex nav-trigger bg-brand-surface text-brand-text border border-brand-muted/20 px-5 py-2.5 rounded-full text-fluid-sm font-semibold hover:border-brand-terra hover:text-brand-terra transition-all duration-300 shadow-sm items-center gap-2"
         @click="(e: MouseEvent) => handleSmoothScroll(e, '#contact')"
+        @touchend.prevent="(e: TouchEvent) => handleSmoothScroll(e as unknown as MouseEvent, '#contact')"
       >
         <span class="relative flex h-2.5 w-2.5">
           <span class="animate-ping-slow absolute inline-flex h-full w-full rounded-full bg-brand-terra opacity-75"></span>

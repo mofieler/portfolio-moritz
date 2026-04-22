@@ -16,9 +16,10 @@ defineEmits<{
   <header class="drawer-header">
     <div class="flex items-center gap-4">
       <button
-        class="drawer-pill-btn"
+        class="drawer-pill-btn touch-manipulation"
         :aria-label="$t('drawer.close')"
         @click="$emit('close')"
+        @touchend.prevent="$emit('close')"
       >
         <UiIcon name="X" size="md" />
       </button>
@@ -27,16 +28,18 @@ defineEmits<{
 
     <nav class="flex items-center gap-2">
       <button
-        class="drawer-pill-btn"
+        class="drawer-pill-btn touch-manipulation"
         :aria-label="$t('drawer.prevProject')"
         @click="$emit('prev')"
+        @touchend.prevent="$emit('prev')"
       >
         <UiIcon name="ChevronLeft" size="md" />
       </button>
       <button
-        class="drawer-pill-btn"
+        class="drawer-pill-btn touch-manipulation"
         :aria-label="$t('drawer.nextProject')"
         @click="$emit('next')"
+        @touchend.prevent="$emit('next')"
       >
         <UiIcon name="ChevronRight" size="md" />
       </button>

@@ -41,9 +41,20 @@ function step() {
 }
 
 onMounted(() => {
+  // Ensure we're on client and hydration is complete
+  if (!process.client) return
+
+  // Set initial text immediately
   currentText.value = phrases.value[0]
-  // Pause so the visitor reads the first phrase before the animation starts
-  timer = setTimeout(() => { isDeleting.value = true; step() }, 3500)
+
+  // Wait for nextTick to ensure DOM is fully rendered after hydration
+  nextTick(() => {
+    // Small delay to ensure mobile browsers have settled
+    timer = setTimeout(() => {
+      isDeleting.value = true
+      step()
+    }, 3500)
+  })
 })
 
 onBeforeUnmount(() => clearTimeout(timer))
@@ -102,6 +113,7 @@ onBeforeUnmount(() => clearTimeout(timer))
           href="#work"
           variant="primary"
           @click="(e: MouseEvent) => handleSmoothScroll(e, '#work')"
+          @touchend="(e: TouchEvent) => handleSmoothScroll(e as unknown as MouseEvent, '#work')"
         >
           {{ $t('hero.ctaWork') }}
         </UiButton>
@@ -109,6 +121,7 @@ onBeforeUnmount(() => clearTimeout(timer))
           href="#contact"
           variant="secondary"
           @click="(e: MouseEvent) => handleSmoothScroll(e, '#contact')"
+          @touchend="(e: TouchEvent) => handleSmoothScroll(e as unknown as MouseEvent, '#contact')"
         >
           {{ $t('hero.ctaContact') }}
         </UiButton>

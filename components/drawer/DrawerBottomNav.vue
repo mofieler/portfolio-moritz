@@ -8,11 +8,11 @@ defineEmits<{
 <template>
   <div class="bottom-nav-wrapper">
     <nav class="bottom-nav">
-      <button class="nav-btn nav-btn-muted" @click="$emit('prev')">
+      <button class="nav-btn nav-btn-muted touch-manipulation" @click="$emit('prev')" @touchend.prevent="$emit('prev')">
         <UiIcon name="ArrowLeft" size="sm" /> {{ $t('drawer.prev') }}
       </button>
       <span class="nav-divider"></span>
-      <button class="nav-btn nav-btn-strong" @click="$emit('next')">
+      <button class="nav-btn nav-btn-strong touch-manipulation" @click="$emit('next')" @touchend.prevent="$emit('next')">
         {{ $t('drawer.next') }} <UiIcon name="ArrowRight" size="sm" />
       </button>
     </nav>
