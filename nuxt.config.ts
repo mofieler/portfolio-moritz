@@ -72,7 +72,7 @@ export default defineNuxtConfig({
     resendApiKey: process.env.RESEND_API_KEY || '',
     contactEmail: process.env.CONTACT_EMAIL || 'moritzfieler@icloud.com',
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://moritzfieler.com',
+      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || 'https://www.moritzfieler.de',
     },
   },
 
@@ -99,9 +99,9 @@ export default defineNuxtConfig({
         { name: 'theme-color', content: '#F9F8F6' },
         { name: 'robots', content: 'index, follow' },
         { property: 'og:type', content: 'website' },
-        { property: 'og:image', content: 'https://moritzfieler.com/og-image.jpg' },
+        { property: 'og:image', content: 'https://www.moritzfieler.de/og-image.jpg' },
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:image', content: 'https://moritzfieler.com/og-image.jpg' },
+        { name: 'twitter:image', content: 'https://www.moritzfieler.de/og-image.jpg' },
         { name: 'apple-mobile-web-app-title', content: 'Portfolio Moritz Fieler' },
       ],
       link: [

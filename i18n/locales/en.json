@@ -1,18 +1,18 @@
 {
   "nav": {
     "home": "Home",
-    "work": "Web Developer Projects",
-    "skills": "UX Designer Skills",
-    "contact": "Web Developer Stuttgart Contact",
-    "available": "Web Developer Available for Projects"
+    "work": "Projects",
+    "skills": "Skills",
+    "contact": "Contact",
+    "available": "Available for Projects"
   },
   "hero": {
-    "eyebrow": "Web Developer Stuttgart | UX Designer & Frontend Developer",
+    "eyebrow": "UX Designer & Frontend Developer | Stuttgart",
     "title": "Designing the future",
     "titleAccent": "of digital interaction.",
-    "description": "Hi, I'm {name}. As a Web Developer and UX Designer based in Stuttgart, I create modular, user-centered digital ecosystems with Vue.js, Nuxt and modern frontend technologies.",
-    "ctaWork": "Discover Web Development Projects",
-    "ctaContact": "Contact Web Developer Stuttgart",
+    "description": "Hi, I'm {name}. I create modular, user-centered digital ecosystems with Vue.js, Nuxt and modern frontend technologies.",
+    "ctaWork": "Discover Projects",
+    "ctaContact": "Get in Touch",
     "scroll": "Scroll"
   },
   "work": {

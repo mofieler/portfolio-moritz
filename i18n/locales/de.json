@@ -1,18 +1,18 @@
 {
   "nav": {
     "home": "Start",
-    "work": "Webentwickler Projekte",
-    "skills": "UX Designer Skills",
-    "contact": "Webentwickler Stuttgart Kontakt",
-    "available": "Webentwickler verfügbar für Projekte"
+    "work": "Projekte",
+    "skills": "Skills",
+    "contact": "Kontakt",
+    "available": "Verfügbar für Projekte"
   },
   "hero": {
-    "eyebrow": "Webentwickler Stuttgart | UX Designer & Frontend Entwickler",
+    "eyebrow": "UX Designer & Frontend Entwickler | Stuttgart",
     "title": "Die Zukunft gestalten",
     "titleAccent": "der digitalen Interaktion.",
-    "description": "Hi, ich bin {name}. Als Webentwickler und UX Designer aus Stuttgart schaffe ich modulare, nutzerzentrierte digitale Ökosysteme mit Vue.js, Nuxt und modernen Frontend-Technologien.",
-    "ctaWork": "Webentwickler Projekte entdecken",
-    "ctaContact": "Webentwickler Stuttgart kontaktieren",
+    "description": "Hi, ich bin {name}. Ich schaffe modulare, nutzerzentrierte digitale Ökosysteme mit Vue.js, Nuxt und modernen Frontend-Technologien.",
+    "ctaWork": "Projekte entdecken",
+    "ctaContact": "Kontakt aufnehmen",
     "scroll": "Scrollen"
   },
   "work": {
@@ -40,7 +40,7 @@
   },
   "projects": {
     "paquita-pilates": {
-      "category": "Webentwicklung Stuttgart | Kundenprojekt",
+      "category": "Kundenprojekt",
       "title": "Paquita Pilates Stuttgart - Website & Buchungssystem",
       "description": "Webentwicklung für Pilates Studio in Stuttgart. Als Webentwickler aus Stuttgart erstellte ich komplettes Webdesign, UX Konzept und Buchungssystem für paquitapilatesreformer.com mit modernen Frontend-Technologien.",
       "longDescription": "**Die Herausforderung**\\n\\nPaquita Pilates ist ein Boutique-Studio in Stuttgart-Ost für Reformer und Classical Pilates — mit privatem, Duo- und Kleingruppentraining. Trotz Premium-Erfahrung fehlte eine kohärente Markenidentität, eine professionelle Website und das Buchungsmanagement lief manuell. Reibung für Kunden und Trainer.\\n\\nDie Kernfrage: Wie übersetzt man den ruhigen, körperbewussten Geist eines Boutique-Pilates-Studios in eine komplette Marken- und Digital-Erfahrung — die die richtigen Kunden anzieht und das Studio-Management mühelos macht?\\n\\n**1. Zielsetzung**\\n\\nAufbau von Identität und digitaler Infrastruktur von Grund auf:\\n\\n- **Markenentwicklung:** Logo, Farbsystem, visuelle Sprache — konsistent über alle Touchpoints\\n- **Website:** Digitale Präsenz, die Philosophie, Kursangebot und Team kommuniziert\\n- **Buchungssystem:** Integrierte Plattform mit Self-Service für Kunden und Admin-Tools für Trainer\\n\\nLive unter: paquitapilatesreformer.com\\n\\n**2. Scope und Leistungen**\\n\\nDrei vernetzte Säulen:\\n\\n- **Markenidentität & Design System:** Komplettes Branding von Grund auf — Logo, Typografie, Farbpalette. Flexible Anwendung digital (Website, Instagram) und physisch (Print-Materialien).\\n- **Website Design & Entwicklung:** Custom Website als primäre digitale Präsenz — ruhige Layouts, bewusster Whitespace, klare Calls-to-Action.\\n- **Digitales Buchungssystem:** Duale Architektur:\\n  - **Kunden-Interface:** Account erstellen, Kurse browsen und buchen, persönlichen Zeitplan einsehen, Buchungen verwalten\\n  - **Admin/Trainer-Interface:** Kurse anlegen und bearbeiten, Kapazitäten managen, Teilnehmerlisten einsehen\\n\\n**3. Design System**\\n\\nDas visuelle System fängt die duale Natur ein: bodenständig und physisch auf der einen, achtsam und spirituell auf der anderen Seite.\\n\\n**Logo:** Ein zentrales Auge — Symbol für Bewusstsein und innere Vision — mit Flügeln und ornamentalem Detail, eingefasst in weiche Formen. Das Wortmarken-Motto 'RETURN TO LIFE' (Joseph Pilates' ursprünglicher Methoden-Name) rundet das zeitlose, zeitgemäße Emblem ab.\\n\\n**Typografie:**\\n\\n- **Metanoia** (Display): Eine kontrastreiche Editorial-Serif. Der Name bedeutet 'transformierende Herzensänderung' — direkter Spiegel der Studio-Philosophie. Eleganz für Headlines.\\n- **Poppins** (UI): Geometrische Sans-Serif für Bodytext und Interface-Elemente — modern und lesbar\\n\\n**Farbpalette (7 Farben):**\\n\\n- **Olive Gold (#86703f):** Erdige Tiefe, Akzent für Struktur\\n- **Warm Taupe (#937955):** Neutrales Mittelton\\n- **Terracotta Copper (#b27d55):** Wärmster Ton, Logo und Key Brand Moments\\n- **Cream White (#f0f1ed):** Primärer Hintergrund — weich, atmend\\n- **Soft Teal (#97cbcc):** Einziger kühler Ton — Klarheit und Ruhe, Highlight\\n- **Muted Rose Taupe (#968173):** Ruhender Ton für sekundären Text\\n- **Warm Grey (#bbbbaf):** Vielseitiges Neutral für Unterflächen\\n\\nDas Ergebnis: eine Farbwelt, die das sensorische Studio-Erlebnis kommuniziert — natürliche Materialien, weiches Licht, Stille.\\n\\n**4. Technologie & Umsetzung**\\n\\n- **Frontend:** Vue.js + Ionic für plattformübergreifende Erfahrung\\n- **Backend:** Node.js + MongoDB API, selbst entwickelt\\n- **Echtzeit-Kursplan:** Sofortige Verfügbarkeit und Bestätigung\\n- **Guthaben-System:** Flexibles Prepaid-Modell für Kunden\\n\\n**5. Ergebnis und Ausblick**\\n\\nBranding und Website sind live. Das Buchungssystem ist in aktiver Entwicklung und wird schrittweise ausgerollt.\\n\\nGeplante Erweiterungen:\\n\\n- Automated Waitlist Management\\n- Guthaben-/Paket-Systeme\\n- Push-Notifications für Kurs-Erinnerungen\\n\\n**Mein Beitrag:** Komplettes Branding, UX-Architektur, UI-Design und Full-Stack-Implementierung. Eine Buchungsplattform, die sich nicht nach Standard-Software anfühlt — sondern wie ein Gespräch vor dem Studio.",
