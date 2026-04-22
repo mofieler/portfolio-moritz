@@ -20,6 +20,7 @@ const pageDescription = computed(() =>
 const canonicalUrl = computed(() =>
   isDE.value ? siteUrl : `${siteUrl}/en`
 )
+//comment
 
 const jsonLd = computed(() => ({
   '@context': 'https://schema.org',
