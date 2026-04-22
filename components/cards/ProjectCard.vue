@@ -32,11 +32,43 @@ interface Props {
 
 const props = defineProps<Props>()
 
-defineEmits<{
+const emit = defineEmits<{
   select: [project: Project]
 }>()
 
 const { category, title, description, tags, imageAlt, imageAlt2 } = useTranslatedProject(() => props.project)
+
+// Touch handling to prevent accidental drawer opening during scroll
+let touchStartY = 0
+let touchStartTime = 0
+let isScrolling = false
+
+const handleTouchStart = (e: TouchEvent) => {
+  touchStartY = e.touches[0].clientY
+  touchStartTime = Date.now()
+  isScrolling = false
+}
+
+const handleTouchMove = (e: TouchEvent) => {
+  const touchY = e.touches[0].clientY
+  const deltaY = Math.abs(touchY - touchStartY)
+  
+  // If user has moved more than 10px vertically, consider it scrolling
+  if (deltaY > 10) {
+    isScrolling = true
+  }
+}
+
+const handleTouchEnd = (e: TouchEvent, project: Project) => {
+  const touchEndTime = Date.now()
+  const touchDuration = touchEndTime - touchStartTime
+  
+  // Only emit select if it's a quick tap (less than 200ms) and not scrolling
+  if (!isScrolling && touchDuration < 200) {
+    e.preventDefault()
+    emit('select', project)
+  }
+}
 </script>
 
 <template>
@@ -46,7 +78,9 @@ const { category, title, description, tags, imageAlt, imageAlt2 } = useTranslate
       class="space-y-5 md:space-y-6 cursor-pointer touch-manipulation"
       :class="reversed ? 'order-1 lg:order-2' : 'order-2 lg:order-1'"
       @click="$emit('select', project)"
-      @touchend.prevent="$emit('select', project)"
+      @touchstart="handleTouchStart"
+      @touchmove="handleTouchMove"
+      @touchend="(e) => handleTouchEnd(e, project)"
     >
       <SectionLabel :number="project.num" :category="category" />
       <h3 class="heading-project">{{ title }}</h3>
@@ -63,7 +97,7 @@ const { category, title, description, tags, imageAlt, imageAlt2 } = useTranslate
       </div>
     </div>
 
-    <!-- Visual — click opens drawer (except video: iframe captures its own clicks) -->
+    <!-- Visual - click opens drawer (except video: iframe captures its own clicks) -->
     <div
       class="relative group w-full order-1 touch-manipulation"
       :class="[
@@ -71,7 +105,9 @@ const { category, title, description, tags, imageAlt, imageAlt2 } = useTranslate
         project.visual !== 'video' ? 'cursor-pointer' : '',
       ]"
       @click="project.visual !== 'video' && $emit('select', project)"
-      @touchend.prevent="project.visual !== 'video' && $emit('select', project)"
+      @touchstart="project.visual !== 'video' && handleTouchStart"
+      @touchmove="project.visual !== 'video' && handleTouchMove"
+      @touchend="(e) => project.visual !== 'video' && handleTouchEnd(e, project)"
     >
       <div class="project-glow" :class="project.fallbackClass ? '' : 'bg-brand-terra'"></div>
 

@@ -18,6 +18,21 @@ let timer: ReturnType<typeof setTimeout>
 
 const phrases = computed(() => PHRASES[locale.value] ?? PHRASES.en)
 
+// Responsive detection for mobile/tablet layout fixes
+const isMobile = ref(false)
+const typewriterHeight = ref('auto')
+
+// Check if we're on mobile/tablet and set appropriate height
+const updateMobileState = () => {
+  isMobile.value = window.innerWidth < 768
+  if (isMobile.value) {
+    // Set a fixed height based on the longest phrase to prevent layout shifts
+    typewriterHeight.value = '2.5rem' // Approximate height for one line of text
+  } else {
+    typewriterHeight.value = 'auto'
+  }
+}
+
 function step() {
   const target = phrases.value[phraseIndex.value]
 
@@ -41,6 +56,9 @@ function step() {
 }
 
 onMounted(() => {
+  updateMobileState()
+  window.addEventListener('resize', updateMobileState)
+  
   // Ensure we're on client and hydration is complete
   if (!process.client) return
 
@@ -57,7 +75,10 @@ onMounted(() => {
   })
 })
 
-onBeforeUnmount(() => clearTimeout(timer))
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', updateMobileState)
+  clearTimeout(timer)
+})
 </script>
 
 <template>
@@ -99,7 +120,10 @@ onBeforeUnmount(() => clearTimeout(timer))
       <h1 class="heading-display mb-8 reveal reveal-d3">
         {{ $t('hero.title') }}
         <br class="hidden md:block" />
-        <span class="text-gradient-terra">
+        <span 
+          class="text-gradient-terra inline-block"
+          :style="{ height: typewriterHeight, minHeight: isMobile ? '2.5rem' : 'auto' }"
+        >
           {{ currentText }}<span class="typewriter-cursor" aria-hidden="true">|</span>
         </span>
       </h1>

@@ -13,10 +13,21 @@ let rafId: number
 let t = 0
 let dpr = 1
 
-// Detect mobile - disable animation to save battery and prevent rendering issues
+// Detect mobile - enable animation with performance optimizations
 const isMobile = () => {
   if (!process.client) return false
   return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent)
+}
+
+// Performance settings for mobile
+const getMobileSettings = () => {
+  const mobile = isMobile()
+  return {
+    frameSkip: mobile ? 2 : 1,        // Skip every 2nd frame on mobile
+    stepSize: mobile ? 2 : 1,         // Larger step size on mobile
+    lineCount: mobile ? 24 : 36,      // Fewer lines on mobile
+    animationSpeed: mobile ? 0.005 : 0.007  // Slower animation on mobile
+  }
 }
 
 const isDarkMode = () => document.documentElement.classList.contains('dark')
@@ -31,6 +42,9 @@ function draw(canvas: HTMLCanvasElement) {
   const ctx = canvas.getContext('2d')
   if (!ctx) return
 
+  // Get performance settings
+  const settings = getMobileSettings()
+
   // Logical CSS dimensions
   const W = canvas.width  / dpr
   const H = canvas.height / dpr
@@ -43,11 +57,11 @@ function draw(canvas: HTMLCanvasElement) {
   // Warm stone in both modes — darker in light mode so lines stand out on cream bg
   const [r, g, b] = dark ? [155, 142, 132] : [105, 90, 75]
 
-  const LINE_COUNT  = 36
+  const LINE_COUNT  = settings.lineCount
   const yStart = H * 0.42         // first line at ~42 % down
   const yEnd   = H * 1.06         // last line exits below canvas
   const spacing = (yEnd - yStart) / (LINE_COUNT - 1)
-  const STEP    = Math.ceil(W / 220) + 1  // ~220 sample points across width
+  const STEP    = Math.ceil(W / 220) * settings.stepSize + 1  // Adaptive sample points
 
   for (let i = 0; i < LINE_COUNT; i++) {
     const progress = i / (LINE_COUNT - 1)  // 0 → 1 top to bottom
@@ -83,11 +97,20 @@ function draw(canvas: HTMLCanvasElement) {
   ctx.restore()
 }
 
+let frameCount = 0
+
 function animate() {
-  // Skip animation on mobile - static frame only
-  if (isMobile()) return
+  const settings = getMobileSettings()
+  
+  // Frame skipping for mobile performance
+  frameCount++
+  if (frameCount % settings.frameSkip !== 0) {
+    rafId = requestAnimationFrame(animate)
+    return
+  }
+  
   rafId = requestAnimationFrame(animate)
-  t += 0.007
+  t += settings.animationSpeed
   const canvas = canvasRef.value
   if (canvas) draw(canvas)
 }
@@ -96,8 +119,7 @@ function onResize() {
   const canvas = canvasRef.value
   if (!canvas) return
   setSize(canvas)
-  // Redraw on resize for mobile (since no animation loop)
-  if (isMobile()) draw(canvas)
+  draw(canvas) // Always redraw on resize
 }
 
 onMounted(() => {
@@ -106,8 +128,8 @@ onMounted(() => {
 
   try {
     setSize(canvas)
-    if (isMobile()) draw(canvas)
-    else animate()
+    draw(canvas) // Initial draw
+    animate() // Always start animation
     window.addEventListener('resize', onResize, { passive: true })
   } catch {
     // Canvas/2D context can fail in restricted browsers — fail silently, page must remain interactive
