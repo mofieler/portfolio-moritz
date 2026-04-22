@@ -65,13 +65,13 @@ onBeforeUnmount(() => {
 <template>
   <section
     id="top"
-    class="relative flex flex-col items-center justify-center text-center pt-36 pb-32 md:pt-52 md:pb-40 px-4 sm:px-6 min-h-svh overflow-hidden"
+    class="relative flex flex-col items-center justify-center text-center pt-36 pb-40 md:pt-52 md:pb-48 px-4 sm:px-6 min-h-svh overflow-hidden"
   >
     <HeroBackground />
 
     <div class="relative z-10 max-w-4xl mx-auto w-full px-2 sm:px-0">
       <!-- Profile picture -->
-      <div class="flex justify-center mb-8 reveal reveal-d1">
+      <div class="flex justify-center mb-8 mt-4 reveal reveal-d1">
         <div class="relative inline-block">
           <!-- Outer glow ring -->
           <div class="absolute inset-0 rounded-full animate-pulse-slow"
@@ -99,13 +99,12 @@ onBeforeUnmount(() => {
       </span>
 
       <h1 class="heading-display mb-8 reveal reveal-d3 max-w-full">
-        {{ $t('hero.title') }}
-        <br class="hidden md:block" />
-        <span 
-          class="text-gradient-terra inline max-w-full"
-        >
+        <div>
+          {{ $t('hero.title') }}
+        </div>
+        <div class="text-gradient-terra" style="min-height: 1.2em;">
           {{ currentText }}<span class="typewriter-cursor" aria-hidden="true">|</span>
-        </span>
+        </div>
       </h1>
 
       <p class="body-large max-w-2xl mx-auto mb-12 reveal reveal-d4">
