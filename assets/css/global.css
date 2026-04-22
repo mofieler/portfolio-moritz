@@ -93,6 +93,9 @@ body {
   .heading-display {
     @apply text-fluid-5xl font-display font-bold tracking-[-0.02em] leading-[1.05];
     color: rgb(var(--brand-text));
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
   }
 
   .heading-section {
@@ -343,6 +346,25 @@ body {
 
 .animate-ping-slow {
   animation: ping-slow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ============================================
+   Mobile Typography Fixes
+   ============================================ */
+
+@media (max-width: 767px) {
+  .heading-display {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+  }
+  
+  .text-gradient-terra {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+  }
 }
 
 /* ============================================

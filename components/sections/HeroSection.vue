@@ -84,11 +84,11 @@ onBeforeUnmount(() => {
 <template>
   <section
     id="top"
-    class="relative flex flex-col items-center justify-center text-center pt-36 pb-32 md:pt-52 md:pb-40 px-6 min-h-svh"
+    class="relative flex flex-col items-center justify-center text-center pt-36 pb-32 md:pt-52 md:pb-40 px-4 sm:px-6 min-h-svh overflow-hidden"
   >
     <HeroBackground />
 
-    <div class="relative z-10 max-w-4xl mx-auto">
+    <div class="relative z-10 max-w-4xl mx-auto w-full px-2 sm:px-0">
       <!-- Profile picture -->
       <div class="flex justify-center mb-8 reveal reveal-d1">
         <div class="relative inline-block">
@@ -117,11 +117,11 @@ onBeforeUnmount(() => {
         {{ $t('hero.eyebrow') }}
       </span>
 
-      <h1 class="heading-display mb-8 reveal reveal-d3">
+      <h1 class="heading-display mb-8 reveal reveal-d3 max-w-full">
         {{ $t('hero.title') }}
         <br class="hidden md:block" />
         <span 
-          class="text-gradient-terra inline-block"
+          class="text-gradient-terra inline-block max-w-full"
           :style="{ height: typewriterHeight, minHeight: isMobile ? '2.5rem' : 'auto' }"
         >
           {{ currentText }}<span class="typewriter-cursor" aria-hidden="true">|</span>
