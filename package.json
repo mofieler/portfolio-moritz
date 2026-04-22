@@ -17,7 +17,6 @@
     "@nuxt/image": "^2.0.0",
     "@nuxtjs/i18n": "^9.0.0",
     "@types/three": "^0.184.0",
-    "lenis": "^1.1.0",
     "moritzfieler-portfolio": "file:..",
     "nuxt": "^3.14.0",
     "resend": "^4.0.0",

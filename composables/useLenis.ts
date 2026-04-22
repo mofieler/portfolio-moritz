@@ -1,88 +1,73 @@
-import Lenis from 'lenis'
-
-// Singleton pattern to ensure only one Lenis instance exists globally
-let globalLenis: Lenis | null = null
-let rafId: number | null = null
-let lenisReady = false
-
-// Track iOS Safari state
-const isIOSSafari = () => {
-  if (!process.client) return false
-  const ua = navigator.userAgent.toLowerCase()
-  return /iphone|ipad|ipod/.test(ua) && /safari/.test(ua) && !/chrome/.test(ua)
-}
-
-const initGlobalLenis = () => {
-  if (!process.client || globalLenis) return
-
-  // Skip Lenis on iOS Safari - use native scrolling instead
-  if (isIOSSafari()) {
-    lenisReady = true
-    return
-  }
-
-  globalLenis = new Lenis({
-    duration: 1.2,
-    easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    orientation: 'vertical',
-    gestureOrientation: 'vertical',
-    smoothWheel: true,
-    wheelMultiplier: 1,
-    touchMultiplier: 1,
-    infinite: false,
-  })
-
-  const raf = (time: number) => {
-    globalLenis?.raf(time)
-    rafId = requestAnimationFrame(raf)
-  }
-  rafId = requestAnimationFrame(raf)
-}
-
-const destroyGlobalLenis = () => {
-  if (rafId) {
-    cancelAnimationFrame(rafId)
-    rafId = null
-  }
-  globalLenis?.destroy()
-  globalLenis = null
-}
+/**
+ * Native scroll wrapper — Lenis was removed because it caused interaction
+ * issues on iOS and added bundle weight without enough benefit.
+ * Native CSS `scroll-behavior: smooth` + `scrollIntoView` cover everything we need.
+ */
 
 export const useLenis = () => {
-  const isReady = ref(false)
-
   const scrollTo = (target: string | number | HTMLElement, options?: { offset?: number; duration?: number }) => {
-    if (globalLenis) {
-      globalLenis.scrollTo(target, {
-        offset: options?.offset ?? -50,
-        duration: options?.duration ?? 1.2,
-      })
-    } else {
-      // Fallback for SSR
-      if (typeof target === 'string' && target.startsWith('#') && process.client) {
-        const element = document.querySelector(target)
-        element?.scrollIntoView({ behavior: 'smooth' })
-      }
+    if (!process.client) return
+
+    if (typeof target === 'number') {
+      window.scrollTo({ top: target, behavior: 'smooth' })
+      return
     }
+
+    const el =
+      typeof target === 'string'
+        ? document.querySelector(target)
+        : target
+
+    if (!el) return
+
+    const offset = options?.offset ?? -50
+    const rect = (el as HTMLElement).getBoundingClientRect()
+    const top = window.scrollY + rect.top + offset
+    window.scrollTo({ top, behavior: 'smooth' })
   }
 
-  const onScroll = (callback: (e: { scroll: number; limit: number; velocity: number; direction: number; progress: number }) => void) => {
-    globalLenis?.on('scroll', callback)
+  // Native scroll listener — replaces Lenis's `onScroll` callback shape.
+  // Returned cleanup function so callers can detach when unmounting.
+  const onScroll = (
+    callback: (e: { scroll: number; limit: number; velocity: number; direction: number; progress: number }) => void,
+  ) => {
+    if (!process.client) return () => {}
+
+    let lastScroll = window.scrollY
+    let lastTime = performance.now()
+
+    const handler = () => {
+      const now = performance.now()
+      const scroll = window.scrollY
+      const dt = Math.max(now - lastTime, 1)
+      const delta = scroll - lastScroll
+      const velocity = delta / dt
+      const limit = Math.max(document.documentElement.scrollHeight - window.innerHeight, 1)
+
+      callback({
+        scroll,
+        limit,
+        velocity,
+        direction: delta > 0 ? 1 : delta < 0 ? -1 : 0,
+        progress: scroll / limit,
+      })
+
+      lastScroll = scroll
+      lastTime = now
+    }
+
+    window.addEventListener('scroll', handler, { passive: true })
+    return () => window.removeEventListener('scroll', handler)
   }
 
-  onMounted(() => {
-    initGlobalLenis()
-  })
-
-  // Only destroy on actual app unmount, not component unmount
-  // This prevents multiple instances from being created/destroyed
-
-  const stop  = () => globalLenis?.stop()
-  const start = () => globalLenis?.start()
+  // No-ops — Lenis used to expose stop/start to lock scroll while drawer was open;
+  // useProjectDrawer now relies on body overflow:hidden, which is enough.
+  const stop = () => {}
+  const start = () => {}
 
   return {
-    lenis: computed(() => globalLenis),
-    isReady: computed(() => lenisReady),
+    lenis: computed(() => null),
+    isReady: computed(() => true),
     scrollTo,
     onScroll,
     stop,

@@ -40,7 +40,7 @@ defineEmits<{
               @next="$emit('next')"
             />
 
-            <div class="drawer-scroll-area" data-lenis-prevent>
+            <div class="drawer-scroll-area">
               <DrawerContent
                 :project="project"
                 :is-switching="isSwitching ?? false"

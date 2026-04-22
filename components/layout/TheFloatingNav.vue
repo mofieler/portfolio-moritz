@@ -28,8 +28,9 @@ const NAV_ITEMS = [
 
 const SECTION_IDS = ['top', 'work', 'skills', 'contact'] as const
 
+let unsubscribe: (() => void) | undefined
 onMounted(() => {
-  onScroll(({ scroll, velocity }) => {
+  unsubscribe = onScroll(({ scroll, velocity }) => {
     if (justClicked.value) return
     if (Math.abs(velocity) > 0.5) return
 
@@ -66,6 +67,11 @@ onMounted(() => {
 
     activeSection.value = newActive
   })
+})
+
+onBeforeUnmount(() => {
+  unsubscribe?.()
+  if (clickTimeout.value) clearTimeout(clickTimeout.value)
 })
 </script>
 
