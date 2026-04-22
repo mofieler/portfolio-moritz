@@ -96,6 +96,7 @@ body {
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
+    word-break: break-word;
   }
 
   .heading-section {
@@ -352,8 +353,34 @@ body {
    Mobile Typography Fixes
    ============================================ */
 
-@media (max-width: 767px) {
+/* ============================================
+   Comprehensive Responsive Typography Fixes
+   ============================================ */
+
+/* Extra small screens (320px and up) */
+@media (max-width: 375px) {
   .heading-display {
+    font-size: 1.75rem !important;
+    line-height: 1.2;
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    hyphens: auto;
+    max-width: 100%;
+  }
+  
+  .text-gradient-terra {
+    word-break: break-all;
+    overflow-wrap: anywhere;
+    max-width: 100%;
+    font-size: inherit !important;
+  }
+}
+
+/* Small screens (376px - 480px) */
+@media (min-width: 376px) and (max-width: 480px) {
+  .heading-display {
+    font-size: 2rem !important;
+    line-height: 1.15;
     word-break: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
@@ -364,7 +391,80 @@ body {
     word-break: break-word;
     overflow-wrap: break-word;
     max-width: 100%;
+    font-size: inherit !important;
   }
+}
+
+/* Medium small screens (481px - 640px) */
+@media (min-width: 481px) and (max-width: 640px) {
+  .heading-display {
+    font-size: 2.25rem !important;
+    line-height: 1.1;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+  }
+  
+  .text-gradient-terra {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    font-size: inherit !important;
+  }
+}
+
+/* Small tablets (641px - 767px) */
+@media (min-width: 641px) and (max-width: 767px) {
+  .heading-display {
+    font-size: 2.5rem !important;
+    line-height: 1.08;
+    word-break: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+    max-width: 100%;
+  }
+  
+  .text-gradient-terra {
+    word-break: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    font-size: inherit !important;
+  }
+}
+
+/* Prevent horizontal overflow globally */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Hero section specific fixes */
+section[id="top"] {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100vw;
+}
+
+section[id="top"] > div {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* Ensure all text elements in hero can wrap */
+section[id="top"] h1,
+section[id="top"] h1 span,
+section[id="top"] .text-gradient-terra {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+  white-space: normal !important;
 }
 
 /* ============================================

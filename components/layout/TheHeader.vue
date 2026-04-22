@@ -2,10 +2,27 @@
 const { handleSmoothScroll } = useSmoothScroll()
 const { locale } = useI18n()
 const switchLocalePath = useSwitchLocalePath()
-const { isDark, toggle } = useColorMode()
+const { isDark, toggle, isHydrated } = useColorMode()
 
 const isEnglish = computed(() => locale.value === 'en')
 const isGerman = computed(() => locale.value === 'de')
+
+// Check actual DOM state for initial icon to prevent mismatch
+const currentTheme = computed(() => {
+  if (!process.client) return 'light'
+  
+  // During hydration, check actual DOM state instead of reactive value
+  if (!isHydrated.value) {
+    return document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+  }
+  
+  return isDark.value ? 'dark' : 'light'
+})
+
+// Ensure icon updates when hydration completes
+watch([isHydrated, isDark], () => {
+  // Force reactivity update when hydration completes or theme changes
+}, { immediate: true })
 
 // Strip hash fragment — switchLocalePath preserves the current URL hash (#top, #work…)
 // which causes a server/client hydration mismatch and crashes the page on navigation.
@@ -35,11 +52,11 @@ const localePath = (code: 'en' | 'de') => {
         class="w-10 h-10 md:w-11 md:h-11 flex items-center justify-center rounded-full text-brand-muted touch-manipulation
           hover:text-brand-text hover:bg-brand-surface border border-transparent
           hover:border-brand-muted/20 transition-all duration-300"
-        :aria-label="isDark ? 'Switch to light mode' : 'Switch to dark mode'"
+        :aria-label="currentTheme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode'"
         @click="toggle"
         @touchend.prevent="toggle"
       >
-        <UiIcon :name="isDark ? 'Sun' : 'Moon'" size="md" />
+        <UiIcon :name="currentTheme === 'dark' ? 'Sun' : 'Moon'" size="md" />
       </button>
 
       <!-- Language Switcher -->
