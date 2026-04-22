@@ -1,18 +1,18 @@
 {
   "nav": {
     "home": "Home",
-    "work": "Work",
-    "skills": "Skills",
-    "contact": "Contact",
-    "available": "Available for work"
+    "work": "Web Developer Projects",
+    "skills": "UX Designer Skills",
+    "contact": "Web Developer Stuttgart Contact",
+    "available": "Web Developer Available for Projects"
   },
   "hero": {
-    "eyebrow": "UX Strategy & Implementation",
+    "eyebrow": "Web Developer Stuttgart | UX Designer & Frontend Developer",
     "title": "Designing the future",
-    "titleAccent": "of interaction.",
-    "description": "Hi, I'm {name}. A UX Strategist and Frontend Developer creating modular, user-centered digital ecosystems.",
-    "ctaWork": "View Selected Work",
-    "ctaContact": "Get in touch",
+    "titleAccent": "of digital interaction.",
+    "description": "Hi, I'm {name}. As a Web Developer and UX Designer based in Stuttgart, I create modular, user-centered digital ecosystems with Vue.js, Nuxt and modern frontend technologies.",
+    "ctaWork": "Discover Web Development Projects",
+    "ctaContact": "Contact Web Developer Stuttgart",
     "scroll": "Scroll"
   },
   "work": {
@@ -174,22 +174,22 @@
     }
   },
   "skills": {
-    "title": "Core Expertise",
-    "subtitle": "Connecting research, design, and robust code.",
+    "title": "Web Developer Stuttgart - Core Competencies",
+    "subtitle": "Web development and UX design as full-stack service from Stuttgart.",
     "ux-design": {
-      "title": "UX Design & Research",
-      "description": "Research-backed concept generation. Transforming user needs and data into seamless, persuasive interfaces.",
-      "tags": ["Figma", "Prototyping", "Think-Aloud", "UEQ"]
+      "title": "UX Design Stuttgart | User Experience Research",
+      "description": "Professional UX design and user research from Stuttgart. User-centered concept development for web development and digital products with Figma, prototyping and usability testing.",
+      "tags": ["UX Design Stuttgart", "Figma", "User Research", "Prototyping", "Think-Aloud", "UEQ", "User-Centered Design"]
     },
     "frontend": {
-      "title": "Frontend Development",
-      "description": "Clean, modular technical implementation of design systems. Building fast, responsive, and maintainable applications.",
-      "tags": ["Vue.js", "Nuxt", "Ionic", "TypeScript"]
+      "title": "Frontend Development Stuttgart | Web Development",
+      "description": "Modern web development from Stuttgart with Vue.js, Nuxt.js and TypeScript. Responsive frontend development for performant and maintainable web applications.",
+      "tags": ["Frontend Development Stuttgart", "Vue.js", "Nuxt.js", "TypeScript", "JavaScript", "Responsive Design", "Web Development"]
     },
     "backend": {
-      "title": "Backend & Systems",
-      "description": "Bridging the gap between front-end UI and server architecture to ensure end-to-end functionality and performance.",
-      "tags": ["Node.js", "MongoDB", "REST APIs", "Git"]
+      "title": "Backend Development & API Integration",
+      "description": "Full-stack web development with Node.js, REST APIs and databases. Seamless integration of frontend and backend for complete web applications.",
+      "tags": ["Backend Development", "Node.js", "MongoDB", "REST APIs", "Full-Stack Development", "API Integration"]
     }
   },
   "timeline": {

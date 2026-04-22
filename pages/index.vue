@@ -13,8 +13,8 @@ const pageTitle = computed(() =>
 
 const pageDescription = computed(() =>
   isDE.value
-    ? 'Freiberuflicher UX-Stratege und Frontend-Entwickler aus Stuttgart. Von der Nutzerforschung bis zur fertigen Lösung — modulare, nutzerzentrierte Digital­produkte mit Vue.js, Nuxt und Figma.'
-    : 'Freelance UX Strategist and Frontend Developer based in Stuttgart, Germany. From research to production — building modular, user-centred digital products with Vue.js, Nuxt and Figma.'
+    ? 'Moritz Fieler - Webentwickler Stuttgart & UX Designer. Spezialisiert auf Vue.js, Nuxt, TypeScript und Frontend-Entwicklung. Freelance Webentwickler aus Stuttgart für moderne digitale Produkte und nutzerzentriertes Design.'
+    : 'Moritz Fieler - Web Developer Stuttgart & UX Designer. Specializing in Vue.js, Nuxt, TypeScript and Frontend Development. Freelance web developer from Stuttgart for modern digital products and user-centered design.'
 )
 
 const canonicalUrl = computed(() =>
@@ -23,35 +23,144 @@ const canonicalUrl = computed(() =>
 
 const jsonLd = computed(() => ({
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: 'Moritz Fieler',
-  url: siteUrl,
-  email: 'moritzfieler@icloud.com',
-  telephone: '+4915168456178',
-  jobTitle: isDE.value ? 'UX-Stratege & Frontend-Entwickler' : 'UX Strategist & Frontend Developer',
-  description: pageDescription.value,
-  image: `${siteUrl}/og-image.jpg`,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Stuttgart',
-    addressRegion: 'Baden-Württemberg',
-    addressCountry: 'DE',
-  },
-  knowsAbout: [
-    'UX Design', 'User Experience', 'UX Strategy', 'UX Research',
-    'Frontend Development', 'Vue.js', 'Nuxt.js', 'React', 'TypeScript',
-    'Figma', 'Ionic Framework', 'Interaction Design', 'Information Architecture',
-    'Usability Testing', 'Persuasive Design',
-  ],
-  hasOccupation: {
-    '@type': 'Occupation',
-    name: isDE.value ? 'UX-Designer & Frontend-Entwickler' : 'UX Designer & Frontend Developer',
-    occupationLocation: {
-      '@type': 'City',
-      name: 'Stuttgart',
+  '@graph': [
+    {
+      '@type': 'Person',
+      name: 'Moritz Fieler',
+      url: siteUrl,
+      email: 'moritzfieler@icloud.com',
+      telephone: '+4915168456178',
+      jobTitle: isDE.value ? 'Webentwickler & UX Designer Stuttgart' : 'Web Developer & UX Designer Stuttgart',
+      description: pageDescription.value,
+      image: `${siteUrl}/og-image.jpg`,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Stuttgart',
+        addressRegion: 'Baden-Württemberg',
+        addressCountry: 'DE',
+        postalCode: '70173',
+      },
+      knowsAbout: [
+        'Webentwicklung Stuttgart', 'Frontend Development', 'Vue.js', 'Nuxt.js', 'TypeScript', 
+        'UX Design Stuttgart', 'User Experience', 'UX Strategy', 'UX Research',
+        'Web Developer Stuttgart', 'React', 'JavaScript', 'CSS', 'HTML',
+        'Figma', 'Ionic Framework', 'Interaction Design', 'Information Architecture',
+        'Usability Testing', 'Persuasive Design', 'Responsive Design',
+      ],
+      hasOccupation: {
+        '@type': 'Occupation',
+        name: isDE.value ? 'Webentwickler & UX Designer' : 'Web Developer & UX Designer',
+        occupationLocation: {
+          '@type': 'City',
+          name: 'Stuttgart',
+          address: {
+            '@type': 'PostalAddress',
+            addressLocality: 'Stuttgart',
+            addressRegion: 'Baden-Württemberg',
+            addressCountry: 'DE',
+          }
+        },
+        skills: 'Webentwicklung, UX Design, Vue.js, Nuxt.js, TypeScript, Figma, Frontend Development',
+      },
+      sameAs: [
+        'https://github.com/mofieler',
+        'https://linkedin.com/in/moritzfieler',
+        'https://dribbble.com/mofieler'
+      ]
     },
-    skills: 'UX Design, UX Research, Vue.js, Nuxt.js, TypeScript, Figma, Ionic',
-  },
+    {
+      '@type': 'ProfessionalService',
+      name: isDE.value ? 'Moritz Fieler - Webentwickler Stuttgart' : 'Moritz Fieler - Web Developer Stuttgart',
+      description: pageDescription.value,
+      url: siteUrl,
+      telephone: '+4915168456178',
+      email: 'moritzfieler@icloud.com',
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Stuttgart',
+        addressRegion: 'Baden-Württemberg',
+        addressCountry: 'DE',
+        postalCode: '70173',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: 48.7758,
+        longitude: 9.1829,
+      },
+      areaServed: {
+        '@type': 'City',
+        name: 'Stuttgart',
+      },
+      serviceType: [
+        'Web Development',
+        'UX Design',
+        'Frontend Development',
+        'Vue.js Development',
+        'Nuxt.js Development',
+        'TypeScript Development'
+      ],
+      hasOfferCatalog: {
+        '@type': 'OfferCatalog',
+        name: isDE.value ? 'Webentwicklung Dienstleistungen' : 'Web Development Services',
+        itemListElement: [
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: isDE.value ? 'Webentwicklung Stuttgart' : 'Web Development Stuttgart',
+              description: isDE.value ? 'Moderne Webentwicklung mit Vue.js, Nuxt.js und TypeScript' : 'Modern web development with Vue.js, Nuxt.js and TypeScript'
+            }
+          },
+          {
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: isDE.value ? 'UX Design Stuttgart' : 'UX Design Stuttgart',
+              description: isDE.value ? 'Nutzerzentriertes UX Design und Research' : 'User-centered UX design and research'
+            }
+          }
+        ]
+      }
+    }
+  ]
+}))
+
+// FAQ Schema for common questions
+const faqSchema = computed(() => ({
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: isDE.value ? 'Welche Technologien verwenden Sie als Webentwickler in Stuttgart?' : 'What technologies do you use as a web developer in Stuttgart?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: isDE.value 
+          ? 'Als Webentwickler in Stuttgart spezialisiere ich mich auf Vue.js, Nuxt.js, TypeScript, JavaScript, HTML5, CSS3 sowie moderne Frontend-Frameworks und Build-Tools.'
+          : 'As a web developer in Stuttgart, I specialize in Vue.js, Nuxt.js, TypeScript, JavaScript, HTML5, CSS3, and modern frontend frameworks and build tools.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: isDE.value ? 'Bieten Sie UX Design Dienstleistungen in Stuttgart an?' : 'Do you offer UX design services in Stuttgart?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: isDE.value
+          ? 'Ja, ich biete professionelles UX Design und User Research in Stuttgart an, inklusive Nutzerzentriertes Design, Prototyping und Usability Testing mit Figma.'
+          : 'Yes, I offer professional UX design and user research in Stuttgart, including user-centered design, prototyping, and usability testing with Figma.'
+      }
+    },
+    {
+      '@type': 'Question',
+      name: isDE.value ? 'Sind Sie als Freelance Webentwickler in Stuttgart verfügbar?' : 'Are you available as a freelance web developer in Stuttgart?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: isDE.value
+          ? 'Ja, ich bin als Freelance Webentwickler und UX Designer in Stuttgart verfügbar für Projekte im Bereich Webentwicklung und UX Design.'
+          : 'Yes, I am available as a freelance web developer and UX designer in Stuttgart for projects in web development and UX design.'
+      }
+    }
+  ]
 }))
 
 useHead({
@@ -59,8 +168,8 @@ useHead({
   meta: [
     { name: 'description', content: pageDescription },
     { name: 'keywords', content: isDE.value
-      ? 'UX Designer Stuttgart, Frontend Entwickler Stuttgart, UX Stratege, Freelance UX Designer Deutschland, Vue.js Entwickler, Nuxt Entwickler, Figma, Nutzerzentriertes Design, Digitale Produkte'
-      : 'UX Designer Stuttgart, Frontend Developer Stuttgart, UX Strategist Germany, Freelance UX Designer, Vue.js Developer, Nuxt Developer, Figma, User-centred Design, Digital Products'
+      ? 'Moritz Fieler, Webentwickler Stuttgart, Frontend Entwickler Stuttgart, UX Designer Stuttgart, Web Developer Stuttgart, Vue.js Entwickler Stuttgart, Nuxt Entwickler Stuttgart, TypeScript Entwickler, Freelance Webentwickler, Frontend Development Stuttgart, UX Design Stuttgart, Webentwicklung Stuttgart, Digitale Produkte Stuttgart'
+      : 'Moritz Fieler, Web Developer Stuttgart, Frontend Developer Stuttgart, UX Designer Stuttgart, Vue.js Developer Stuttgart, Nuxt Developer Stuttgart, TypeScript Developer Stuttgart, Freelance Web Developer, Frontend Development Stuttgart, UX Design Stuttgart, Web Development Stuttgart, Digital Products Stuttgart'
     },
     { name: 'author', content: 'Moritz Fieler' },
     { name: 'geo.region', content: 'DE-BW' },
@@ -88,6 +197,10 @@ useHead({
     {
       type: 'application/ld+json',
       innerHTML: computed(() => JSON.stringify(jsonLd.value)),
+    },
+    {
+      type: 'application/ld+json',
+      innerHTML: computed(() => JSON.stringify(faqSchema.value)),
     },
   ],
 })
