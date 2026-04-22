@@ -101,18 +101,17 @@ function onResize() {
 }
 
 onMounted(() => {
-  const canvas = canvasRef.value!
-  setSize(canvas)
-  
-  if (isMobile()) {
-    // Mobile: draw once, no animation
-    draw(canvas)
-  } else {
-    // Desktop: animate
-    animate()
+  const canvas = canvasRef.value
+  if (!canvas) return
+
+  try {
+    setSize(canvas)
+    if (isMobile()) draw(canvas)
+    else animate()
+    window.addEventListener('resize', onResize, { passive: true })
+  } catch {
+    // Canvas/2D context can fail in restricted browsers — fail silently, page must remain interactive
   }
-  
-  window.addEventListener('resize', onResize, { passive: true })
 })
 
 onBeforeUnmount(() => {

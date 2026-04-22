@@ -89,22 +89,8 @@ export default defineNuxtConfig({
         {
           // Anti-FOUC: only restore explicitly saved preference — never auto-detect system theme
           id: 'color-mode-script',
-          innerHTML: `(function(){if(localStorage.getItem('color-mode')==='dark'){document.documentElement.classList.add('dark')}})()`,
+          innerHTML: `(function(){try{if(localStorage.getItem('color-mode')==='dark'){document.documentElement.classList.add('dark')}}catch(e){}})()`,
           type: 'text/javascript',
-        },
-        {
-          // Mobile safety: force-reveal content on touch devices regardless of JS state.
-          // Inline + runs immediately so iOS Safari never gets stuck on invisible .reveal elements.
-          id: 'mobile-reveal-safety',
-          innerHTML: `(function(){try{var mq=window.matchMedia('(hover: none), (pointer: coarse)');if(mq.matches){document.documentElement.classList.add('is-touch')}}catch(e){}})()`,
-          type: 'text/javascript',
-        },
-      ],
-      style: [
-        {
-          // Bulletproof mobile reveal override — inline CSS in HTML head,
-          // highest specificity, cannot be defeated by cached external stylesheets.
-          innerHTML: `html.is-touch .reveal,html.is-touch .reveal *{opacity:1!important;transform:none!important;filter:none!important;visibility:visible!important}@media (hover:none),(pointer:coarse){.reveal{opacity:1!important;transform:none!important;filter:none!important;visibility:visible!important;transition:none!important}}`,
         },
       ],
       meta: [

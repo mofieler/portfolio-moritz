@@ -165,19 +165,36 @@ body {
 
 /* ============================================
    Scroll Reveal Animations
+   ----------------------------------------------
+   Default state is VISIBLE. JS adds `.reveal-pending` only to off-screen
+   elements that should animate in — guaranteeing content is never stuck
+   invisible if JS fails or never loads.
    ============================================ */
 
-/* Default: visible. Animation only engages on hover-capable devices (desktop) where JS will add .active. */
 .reveal {
   opacity: 1;
   transform: none;
   filter: none;
 }
 
-/* Desktop (fine pointer + hover) — hide initially and animate in when .active is added by JS */
+/* Only elements queued for animation get the hidden pre-state */
+.reveal.reveal-pending {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity   0.55s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal.reveal-pending.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Desktop polish — bigger lift + blur for a richer effect */
 @media (hover: hover) and (pointer: fine) {
-  .reveal {
-    opacity: 0;
+  .reveal.reveal-pending {
     transform: translateY(24px);
     filter: blur(10px);
     transition:
@@ -186,23 +203,22 @@ body {
       filter    0.75s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
-  .reveal.active {
-    opacity: 1;
-    transform: translateY(0);
+  .reveal.reveal-pending.active {
     filter: blur(0px);
   }
-
-  /* Stagger delay helpers — apply alongside .reveal */
-  .reveal-d1 { transition-delay: 80ms; }
-  .reveal-d2 { transition-delay: 180ms; }
-  .reveal-d3 { transition-delay: 280ms; }
-  .reveal-d4 { transition-delay: 380ms; }
-  .reveal-d5 { transition-delay: 480ms; }
 }
 
-/* Respect reduced-motion — always visible, no transitions */
+/* Stagger helpers — same on all devices */
+.reveal-d1.reveal-pending { transition-delay: 60ms; }
+.reveal-d2.reveal-pending { transition-delay: 140ms; }
+.reveal-d3.reveal-pending { transition-delay: 220ms; }
+.reveal-d4.reveal-pending { transition-delay: 300ms; }
+.reveal-d5.reveal-pending { transition-delay: 380ms; }
+
+/* Respect reduced-motion — disable animation entirely */
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
+  .reveal.reveal-pending,
+  .reveal.reveal-pending.active {
     opacity: 1 !important;
     transform: none !important;
     filter: none !important;

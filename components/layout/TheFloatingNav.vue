@@ -1,5 +1,6 @@
 <script setup lang="ts">
 const { handleSmoothScroll } = useSmoothScroll()
+const { onScroll } = useLenis()
 const activeSection = ref('top')
 
 const justClicked = ref(false)
@@ -28,7 +29,6 @@ const NAV_ITEMS = [
 const SECTION_IDS = ['top', 'work', 'skills', 'contact'] as const
 
 onMounted(() => {
-  const { onScroll } = useLenis()
   onScroll(({ scroll, velocity }) => {
     if (justClicked.value) return
     if (Math.abs(velocity) > 0.5) return
