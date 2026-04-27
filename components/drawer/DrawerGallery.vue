@@ -99,13 +99,14 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
         @touchend.prevent="toggleCaption"
       >
         <Transition name="stage-fade" mode="out-in">
-          <img
+          <NuxtImg
             :key="activeItem!.src"
             :src="activeItem!.src"
             :alt="`${title} — ${activeIndex + 1} / ${total}`"
             class="stage-image"
             loading="lazy"
-          >
+            preset="project"
+          />
         </Transition>
 
         <!-- Caption overlay -->
@@ -165,7 +166,7 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
           @click="goTo(index)"
           @touchend.prevent="goTo(index)"
         >
-          <img :src="item.src" :alt="`${title} thumbnail ${index + 1}`" loading="lazy">
+          <NuxtImg :src="item.src" :alt="`${title} thumbnail ${index + 1}`" loading="lazy" preset="thumbnail" />
         </button>
       </div>
     </div>
@@ -200,11 +201,12 @@ onBeforeUnmount(() => window.removeEventListener('keydown', onKey))
             <UiIcon name="ChevronLeft" size="lg" />
           </button>
 
-          <img
+          <NuxtImg
             :src="gallery[activeIndex].src"
             :alt="`${title} — ${activeIndex + 1}`"
             class="lb-image"
-          >
+            preset="project"
+          />
 
           <button
             v-if="hasMany"

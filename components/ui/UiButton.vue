@@ -13,7 +13,7 @@ withDefaults(defineProps<Props>(), {
   external: false,
 })
 
-const baseClasses = 'inline-flex items-center justify-center font-semibold rounded-full transition-all duration-300 transform hover:scale-105'
+const baseClasses = 'inline-flex items-center justify-center font-semibold rounded-full transition-all duration-300'
 
 const variantClasses = {
   primary: 'bg-brand-text text-brand-bg hover:opacity-80 shadow-md',

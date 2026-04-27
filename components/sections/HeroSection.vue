@@ -65,7 +65,7 @@ onBeforeUnmount(() => {
 <template>
   <section
     id="top"
-    class="relative flex flex-col items-center justify-center text-center pt-36 pb-40 md:pt-52 md:pb-48 px-4 sm:px-6 min-h-svh overflow-hidden"
+    class="relative flex flex-col items-center justify-center text-center px-4 sm:px-6 h-svh overflow-hidden"
   >
     <HeroBackground />
 
@@ -78,11 +78,12 @@ onBeforeUnmount(() => {
             style="background: radial-gradient(circle, rgb(var(--brand-terra) / 0.15) 0%, transparent 70%); transform: scale(1.35);">
           </div>
           <!-- Avatar -->
-          <img
+          <NuxtImg
             src="/images/projects/portfolio/profilepicture.png"
             alt="Moritz Fieler"
             class="relative w-28 h-28 md:w-36 md:h-36 rounded-full object-cover"
             style="box-shadow: 0 0 0 3px rgb(var(--brand-terra) / 0.25), 0 8px 32px rgba(0,0,0,0.12);"
+            preset="thumbnail"
           />
           <!-- Available pulse dot -->
           <span class="absolute bottom-1.5 right-1.5 md:bottom-2 md:right-2 flex h-4 w-4">

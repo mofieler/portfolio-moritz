@@ -28,10 +28,11 @@ const handleImageError = (event: Event) => {
       -->
 
       <!-- Primary: sized by height, left-anchored -->
-      <img
+      <NuxtImg
         :src="imageSrc"
         :alt="imageAlt"
         loading="lazy"
+        preset="project"
         class="absolute w-auto object-contain select-none pointer-events-none
           top-1/2 -translate-y-[54%] group-hover:-translate-y-[58%]
           drop-shadow-2xl transition-transform duration-700"
@@ -40,10 +41,11 @@ const handleImageError = (event: Event) => {
       />
 
       <!-- Secondary: sized by height, right-anchored, lowered -->
-      <img
+      <NuxtImg
         :src="imageSrc2"
         :alt="imageAlt2 || ''"
         loading="lazy"
+        preset="project"
         class="absolute w-auto object-contain select-none pointer-events-none
           top-1/2 -translate-y-[46%] group-hover:-translate-y-[42%]
           drop-shadow-[0_12px_40px_rgba(0,0,0,0.20)] transition-transform duration-700 delay-75"
@@ -54,10 +56,11 @@ const handleImageError = (event: Event) => {
 
     <!-- Single image fallback: centred, fills card -->
     <div v-else class="absolute inset-[3%]">
-      <img
+      <NuxtImg
         :src="imageSrc"
         :alt="imageAlt"
         loading="lazy"
+        preset="project"
         class="w-full h-full object-contain
           drop-shadow-2xl select-none pointer-events-none"
         @error="handleImageError"
